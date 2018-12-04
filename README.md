@@ -4,7 +4,7 @@ GPD Win 2 XTU Manager is an application developed by [@BlackDragonBE](https://tw
 
 ## How To Use
 
-Download the [newest release ZIP](https://github.com/BlackDragonBE/GPDWin2XTUManager/releases) and unpack it somewhere safe. Now start **GPDWin2XTUManager.exe** with administrator privileges.  
+Download the [newest release ZIP](https://github.com/BlackDragonBE/GPDWin2XTUManager/releases) and unpack it somewhere safe. Now start **GPDWin2XTUManager.exe** with administrator privileges. (it will request this by default)  
   
 You'll see the following screen:
 

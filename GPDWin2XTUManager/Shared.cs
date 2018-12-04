@@ -10,6 +10,7 @@ namespace GPDWin2XTUManager
 {
     public static class Shared
     {
+        public static readonly decimal VERSION = 1.00m;
         public static readonly string SETTINGS_PATH = "Settings.json";
         public static readonly string XTU_PATH = @"C:\Program Files (x86)\Intel\Intel(R) Extreme Tuning Utility\Client\xtucli.exe";
 

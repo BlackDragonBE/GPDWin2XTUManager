@@ -43,7 +43,7 @@ namespace GPDWin2XTUManager
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            
+            Text += " v " + Shared.VERSION;
         }
 
         private void CheckForXTU()
