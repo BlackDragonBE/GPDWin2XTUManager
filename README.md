@@ -43,23 +43,23 @@ This will apply the settings and immediately close the application afterwards. T
 
 ## FAQ
 
-Q: Do I still need to download and install the Intel Extreme Tuning Utility?
+Q: Do I still need to download and install the Intel Extreme Tuning Utility?  
 A: Yes! This application "talks" with XTU in order to apply the settings. Download it here: https://downloadcenter.intel.com/download/24075/Intel-Extreme-Tuning-Utility-Intel-XTU-
 The app will also prompt you to download XTU if it's not installed yet.
 
-Q: Why is it so ugly?
+Q: Why is it so ugly?  
 A: Because I'm most familiar with [WinForms](https://en.wikipedia.org/wiki/Windows_Forms) and I didn't want to learn how to use [WPF](https://en.wikipedia.org/wiki/Windows_Presentation_Foundation) just yet. I personally do like the "old school" aesthetic though.
 
-Q: I love this! Can I buy you a beer/coffee?
+Q: I love this! Can I buy you a beer/coffee?  
 A: Sure! You can donate [here](https://www.paypal.me/blackdragonbe). Thanks! <3
 
-Q: I'd like to see [FEATURE HERE] implemented.
+Q: I'd like to see [FEATURE HERE] implemented.  
 A: First, that's not a question. Second, feel free to contact me on [Reddit](https://www.reddit.com/user/BlackDragonBE/) or [Twitter](https://twitter.com/BlackDragonBE) with any suggestions.
 
-Q: Can I share my list of profiles with others?
+Q: Can I share my list of profiles with others?  
 A: Sure, just share the **Settings.json** file in the application folder, that holds all the profiles. You can also edit it manually, but I wouldn't recommend it.
 
-Q: I've used your application and I got a BSOD! What the frick?!
+Q: I've used your application and I got a BSOD! What the frick?!  
 A: Be sure to set up and test any values, especially the undervolts. Every device is different and has different stable settings. Don't be afraid to experiment and ask advice on [Reddit](https://www.reddit.com/r/gpdwin/)!
 
 ## Issues
