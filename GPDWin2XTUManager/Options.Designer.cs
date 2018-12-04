@@ -71,6 +71,7 @@
             // 
             // btnAddProfile
             // 
+            this.btnAddProfile.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnAddProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddProfile.Location = new System.Drawing.Point(8, 230);
             this.btnAddProfile.Name = "btnAddProfile";
@@ -82,6 +83,7 @@
             // 
             // btnDeleteProfile
             // 
+            this.btnDeleteProfile.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnDeleteProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteProfile.Location = new System.Drawing.Point(107, 230);
             this.btnDeleteProfile.Name = "btnDeleteProfile";
@@ -214,6 +216,7 @@
             // 
             // btnSettingsOK
             // 
+            this.btnSettingsOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnSettingsOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSettingsOK.Location = new System.Drawing.Point(345, 203);
             this.btnSettingsOK.Name = "btnSettingsOK";
