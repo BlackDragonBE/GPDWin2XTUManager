@@ -29,7 +29,17 @@ Once you're satisfied, you can either minimize the application (the app only use
 
 ## Command Line (Advanced)
 
-The applications has a "hidden" feature, it allows you to apply 
+The applications has a "hidden" feature, it allows you to apply settings without doing any manual work, either with a task or a CMD script.  
+
+The following format can be used to apply a setting:
+
+    [PATH-TO-EXE]/GPDWin2XTUManager.exe minimumWatt maximumWatt cpuUndervolt gpuUndervolt
+
+For example:
+
+    C:\XTUManager\GPDWin2XTUManager.exe 7 15 50 50
+
+This will apply the settings and immediately close the application afterwards. This is ideal for applying the same settings each time at the system startup. Just make sure the settings are stable first or you'll have to boot into safe mode to undo the task.
 
 ## FAQ
 
