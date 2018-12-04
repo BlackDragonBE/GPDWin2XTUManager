@@ -8,12 +8,12 @@ Download the [newest release ZIP](https://github.com/BlackDragonBE/GPDWin2XTUMan
   
 You'll see the following screen:
 
-![](Images\Main.png)
+![](Images/Main.png)
 
 By default, there's only the STOCK profile. You can click the button any time to revert back to stock settings.  
 To start creating your own profile, either click any of the **Create profile...** buttons or the **Settings** button. This will open up the **Settings** window:
 
-![](Images\Options.png)
+![](Images/Options.png)
 
 The defined profiles are shown on the left side. Selecting any of these updates the fields on the right. The STOCK profile can't be adjusted.  
 To create a new profile, click the **+** button below the profile list. A new profile will be added to the list. Click on the newly made profile to select it.
