@@ -45,7 +45,10 @@ This will apply the settings and immediately close the application afterwards. T
 
 Q: Do I still need to download and install the Intel Extreme Tuning Utility?  
 A: Yes! This application "talks" with XTU in order to apply the settings. Download it here: https://downloadcenter.intel.com/download/24075/Intel-Extreme-Tuning-Utility-Intel-XTU-
-The app will also prompt you to download XTU if it's not installed yet.
+The app will also prompt you to download XTU if it's not installed yet.  
+  
+Q: Does XTU need to be constantly running in the background while using this?  
+A: Nope, the application starts and stops the XTU service by itself. The XTU window doesn't even need to be opened as only the CLI (command line interface) is used.
 
 Q: Why is it so ugly?  
 A: Because I'm most familiar with [WinForms](https://en.wikipedia.org/wiki/Windows_Forms) and I didn't want to learn how to use [WPF](https://en.wikipedia.org/wiki/Windows_Presentation_Foundation) just yet. I personally do like the "old school" aesthetic though.
