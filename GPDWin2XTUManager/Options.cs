@@ -104,7 +104,7 @@ namespace GPDWin2XTUManager
         {
             if (Profiles.Count < 8)
             {
-                Profiles.Add(new XTUProfile("NEW PROFILE", 7, 15, 0, 0));
+                Profiles.Add(new XTUProfile("NEW_PROFILE", 7, 15, 0, 0));
                 UpdateProfileList();
             }
         }
@@ -142,7 +142,7 @@ namespace GPDWin2XTUManager
 
             if (selected > 0)
             {
-                Profiles[selected].Name = txtName.Text;
+                Profiles[selected].Name = txtName.Text.Replace(" ", "_"); // Don't allow spaces
                 UpdateProfileList();
                 lstOptionsProfiles.SelectedIndex = selected;
             }

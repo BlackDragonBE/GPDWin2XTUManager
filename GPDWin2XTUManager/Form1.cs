@@ -16,6 +16,7 @@ namespace GPDWin2XTUManager
         public MainForm(string[] args = null)
         {
             InitializeComponent();
+            MessageBox.Show(Shared.LogonRegistryKeyExists().ToString());
             CheckForXTU();
             StartXTUService();
 
@@ -30,7 +31,7 @@ namespace GPDWin2XTUManager
                 {                   
                     XTUProfile tempProfile = new XTUProfile("TEMP", Convert.ToDouble(args[0]),Convert.ToDouble(args[1]),Convert.ToInt32(args[2]),Convert.ToInt32(args[3]));
                     ApplyXTUProfile(tempProfile);
-                    Application.Exit();
+                    Environment.Exit(0);
                 }
                 else if (args.Length == 1) // Apply profile by name. Parameter: profile name.
                 {
@@ -39,7 +40,7 @@ namespace GPDWin2XTUManager
                     if (profileToApply != null)
                     {
                         ApplyXTUProfile(profileToApply);
-                        Application.Exit();
+                        Environment.Exit(0);
                     }
                 }
                 else
@@ -66,7 +67,8 @@ namespace GPDWin2XTUManager
                     Process.Start("https://downloadcenter.intel.com/download/24075/Intel-Extreme-Tuning-Utility-Intel-XTU-");
                 }
 
-                Application.Exit();
+                Environment.Exit(0);
+
             }
             else
             {
@@ -92,7 +94,7 @@ namespace GPDWin2XTUManager
 
                 txtInfo.Text += "Current values: \r\n" + "Min W: \r\n" + minW + "\r\nMax W: \r\n" + maxW + "\r\nCPU UV: \r\n" + cpuUV + "\r\nGPU UV: \r\n" + gpuUV;
             }
-            catch (Exception e)
+            catch
             {
                 txtInfo.Text += "Couldn't read current values.";
             }
