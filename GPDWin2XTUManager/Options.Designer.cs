@@ -297,6 +297,7 @@
             this.chkProfileLogOn.Text = "Apply profile at log on:";
             this.chkProfileLogOn.UseVisualStyleBackColor = true;
             this.chkProfileLogOn.Visible = false;
+            this.chkProfileLogOn.CheckedChanged += new System.EventHandler(this.chkProfileLogOn_CheckedChanged);
             // 
             // label6
             // 

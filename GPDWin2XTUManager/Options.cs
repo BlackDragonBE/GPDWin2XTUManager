@@ -224,5 +224,18 @@ namespace GPDWin2XTUManager
                 lstOptionsProfiles.SelectedIndex = selected;
             }
         }
+
+        private void chkProfileLogOn_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkProfileLogOn.Checked)
+            {
+                cmbProfileLogOn.Enabled = true;
+            }
+            else
+            {
+                cmbProfileLogOn.Enabled = false;
+                RegistryManager.ClearLogonProfileKey();
+            }
+        }
     }
 }
