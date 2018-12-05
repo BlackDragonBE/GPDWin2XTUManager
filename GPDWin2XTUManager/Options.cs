@@ -24,7 +24,30 @@ namespace GPDWin2XTUManager
         private void Options_Load(object sender, EventArgs e)
         {
             UpdateProfileList();
+            UpdateLogonUI();
             lstOptionsProfiles.SelectedIndex = 0;
+        }
+
+        private void UpdateLogonUI()
+        {
+            if (RegistryManager.LogonRegistryKeyExists())
+            {
+                // A logon key is defined
+
+                if (Profiles.Exists(pr => pr.Name == RegistryManager.GetLogonProfileKeyValue()))
+                {
+                    // The logon profile still exists
+                    chkProfileLogOn.Checked = true;
+                    cmbProfileLogOn.SelectedItem = Profiles.Find(pr => pr.Name == RegistryManager.GetLogonProfileKeyValue());
+                }
+                else
+                {
+                    // The logon profile doesn't exist, clear the key
+                    RegistryManager.ClearLogonProfileKey();
+                    chkProfileLogOn.Checked = false;
+                    cmbProfileLogOn.Enabled = false;
+                }
+            }
         }
 
         private void UpdateProfileList()

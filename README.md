@@ -39,7 +39,11 @@ For example:
 
     C:\XTUManager\GPDWin2XTUManager.exe 7 15 50 50
 
-This will apply the settings and immediately close the application afterwards. This is ideal for applying the same settings each time at the system startup. Just make sure the settings are stable first or you'll have to boot into safe mode to undo the task.
+Since version 1.01 you can also just pass the profile name like this for example:
+
+    C:\XTUManager\GPDWin2XTUManager.exe PERFORMANCE
+
+These will apply the settings and immediately close the application afterwards. This is ideal for applying the same settings each time at the system startup. Just make sure the settings are stable first or you'll have to boot into safe mode to undo the task. A future version will include a way to do this for you.
 
 ## FAQ
 
@@ -69,3 +73,7 @@ A: Be sure to set up and test any values, especially the undervolts. Every devic
 
 Please create a new issue if there's a a problem with the application. Describe what you were doing and add a screenshot if applicable.  
 Keep in mind that this is a free hobby project so I might not be able to resolve issues straight away, please be patient. Thanks!
+
+## Feature Wish List
+
+- Option to apply a profile at system log on.
