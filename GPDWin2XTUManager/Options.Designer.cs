@@ -46,7 +46,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmbProfileLogOn = new System.Windows.Forms.ComboBox();
             this.chkProfileLogOn = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numMinW)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxW)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCPUuv)).BeginInit();
@@ -280,41 +279,29 @@
             this.cmbProfileLogOn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProfileLogOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbProfileLogOn.FormattingEnabled = true;
-            this.cmbProfileLogOn.Location = new System.Drawing.Point(234, 287);
+            this.cmbProfileLogOn.Location = new System.Drawing.Point(234, 289);
             this.cmbProfileLogOn.Name = "cmbProfileLogOn";
             this.cmbProfileLogOn.Size = new System.Drawing.Size(186, 28);
             this.cmbProfileLogOn.TabIndex = 19;
-            this.cmbProfileLogOn.Visible = false;
+            this.cmbProfileLogOn.SelectedIndexChanged += new System.EventHandler(this.cmbProfileLogOn_SelectedIndexChanged);
             // 
             // chkProfileLogOn
             // 
             this.chkProfileLogOn.AutoSize = true;
             this.chkProfileLogOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkProfileLogOn.Location = new System.Drawing.Point(17, 289);
+            this.chkProfileLogOn.Location = new System.Drawing.Point(17, 291);
             this.chkProfileLogOn.Name = "chkProfileLogOn";
             this.chkProfileLogOn.Size = new System.Drawing.Size(183, 24);
             this.chkProfileLogOn.TabIndex = 20;
             this.chkProfileLogOn.Text = "Apply profile at log on:";
             this.chkProfileLogOn.UseVisualStyleBackColor = true;
-            this.chkProfileLogOn.Visible = false;
             this.chkProfileLogOn.CheckedChanged += new System.EventHandler(this.chkProfileLogOn_CheckedChanged);
-            // 
-            // label6
-            // 
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(13, 330);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(407, 43);
-            this.label6.TabIndex = 18;
-            this.label6.Text = "Note: Renaming or removing this profile will remove the log on entry!";
-            this.label6.Visible = false;
             // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 385);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.chkProfileLogOn);
             this.Controls.Add(this.cmbProfileLogOn);
             this.Controls.Add(this.btnSettingsOK);
@@ -361,6 +348,5 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox cmbProfileLogOn;
         private System.Windows.Forms.CheckBox chkProfileLogOn;
-        private System.Windows.Forms.Label label6;
     }
 }

@@ -20,8 +20,8 @@ namespace GPDWin2XTUManager
         {
             RegistryKey key = Registry.CurrentUser.OpenSubKey(Shared.RUN_AT_LOGON_PATH, true);
             string[] valueArray = key.GetValue(Shared.APP_REG_KEY_VALUE).ToString().Split(' ');
-
-            return valueArray[valueArray.Length]; // Get profile name by extracting name after last space
+            //MessageBox.Show(valueArray[valueArray.Length - 1]);//todo: debug, remove
+            return valueArray[valueArray.Length-1]; // Get profile name by extracting name after last space
         }
 
         public static void AddLogonProfileKey(XTUProfile profile)

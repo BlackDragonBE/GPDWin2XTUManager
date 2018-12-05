@@ -40,6 +40,7 @@
             this.btnProfile1 = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.txtInfo = new System.Windows.Forms.TextBox();
+            this.btnUpdateAvailable = new System.Windows.Forms.Button();
             this.tblProfiles.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -194,11 +195,25 @@
             this.txtInfo.Size = new System.Drawing.Size(567, 127);
             this.txtInfo.TabIndex = 9;
             // 
+            // btnUpdateAvailable
+            // 
+            this.btnUpdateAvailable.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnUpdateAvailable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateAvailable.Location = new System.Drawing.Point(585, 328);
+            this.btnUpdateAvailable.Name = "btnUpdateAvailable";
+            this.btnUpdateAvailable.Size = new System.Drawing.Size(187, 50);
+            this.btnUpdateAvailable.TabIndex = 10;
+            this.btnUpdateAvailable.Text = "v1.03 is available!\r\nClick for changelog.";
+            this.btnUpdateAvailable.UseVisualStyleBackColor = true;
+            this.btnUpdateAvailable.Visible = false;
+            this.btnUpdateAvailable.Click += new System.EventHandler(this.btnUpdateAvailable_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
+            this.Controls.Add(this.btnUpdateAvailable);
             this.Controls.Add(this.txtInfo);
             this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.tblProfiles);
@@ -231,6 +246,7 @@
         private System.Windows.Forms.Button btnProfile2;
         private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.TextBox txtInfo;
+        private System.Windows.Forms.Button btnUpdateAvailable;
     }
 }
 

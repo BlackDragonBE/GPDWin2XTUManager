@@ -24,11 +24,11 @@ namespace GPDWin2XTUManager
         private void Options_Load(object sender, EventArgs e)
         {
             UpdateProfileList();
-            UpdateLogonUI();
+            CheckForLogonKey();
             lstOptionsProfiles.SelectedIndex = 0;
         }
 
-        private void UpdateLogonUI()
+        private void CheckForLogonKey()
         {
             if (RegistryManager.LogonRegistryKeyExists())
             {
@@ -42,11 +42,19 @@ namespace GPDWin2XTUManager
                 }
                 else
                 {
-                    // The logon profile doesn't exist, clear the key
+                    // The logon profile doesn't exist anymore, clear the key
                     RegistryManager.ClearLogonProfileKey();
                     chkProfileLogOn.Checked = false;
                     cmbProfileLogOn.Enabled = false;
+                    cmbProfileLogOn.SelectedIndex = 0;
                 }
+            }
+            else
+            {
+                // No logon key defined
+                chkProfileLogOn.Checked = false;
+                cmbProfileLogOn.Enabled = false;
+                cmbProfileLogOn.SelectedIndex = 0;
             }
         }
 
@@ -129,6 +137,7 @@ namespace GPDWin2XTUManager
             {
                 Profiles.Add(new XTUProfile("NEW_PROFILE", 7, 15, 0, 0));
                 UpdateProfileList();
+                CheckForLogonKey();
             }
         }
 
@@ -142,10 +151,11 @@ namespace GPDWin2XTUManager
             if (lstOptionsProfiles.SelectedIndex > 0)
             {
                 if (MessageBox.Show("Are you sure you want to delete the " + Profiles[lstOptionsProfiles.SelectedIndex].Name + " profile?", "Delete profile?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                {
+                {                   
                     Profiles.RemoveAt(lstOptionsProfiles.SelectedIndex);
                     UpdateProfileList();
                     lstOptionsProfiles.SelectedIndex = 0;
+                    CheckForLogonKey();
                 }
             }
             else
@@ -161,13 +171,21 @@ namespace GPDWin2XTUManager
                 return;
             }
             
-            int selected = lstOptionsProfiles.SelectedIndex;
+            int selectedProfileIndex = lstOptionsProfiles.SelectedIndex;
+            int selectedLogonIndex = cmbProfileLogOn.SelectedIndex;
 
-            if (selected > 0)
+            // Check for logon key if enabled
+            if (chkProfileLogOn.Checked)
             {
-                Profiles[selected].Name = txtName.Text.Replace(" ", "_"); // Don't allow spaces
+                CheckForLogonKey();
+            }
+            
+            if (selectedProfileIndex > 0)
+            {
+                Profiles[selectedProfileIndex].Name = txtName.Text.Replace(" ", "_"); // Don't allow spaces
                 UpdateProfileList();
-                lstOptionsProfiles.SelectedIndex = selected;
+                lstOptionsProfiles.SelectedIndex = selectedProfileIndex;
+                cmbProfileLogOn.SelectedIndex = selectedLogonIndex;
             }
 
         }
@@ -226,16 +244,36 @@ namespace GPDWin2XTUManager
         }
 
         private void chkProfileLogOn_CheckedChanged(object sender, EventArgs e)
-        {
+        {           
             if (chkProfileLogOn.Checked)
             {
                 cmbProfileLogOn.Enabled = true;
+                AddSelectedProfileInComboboxToLogon();
             }
             else
             {
                 cmbProfileLogOn.Enabled = false;
                 RegistryManager.ClearLogonProfileKey();
             }
+        }
+
+        private void cmbProfileLogOn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (chkProfileLogOn.Checked && cmbProfileLogOn.Enabled )
+            {
+                AddSelectedProfileInComboboxToLogon();
+            }
+        }
+
+        private void AddSelectedProfileInComboboxToLogon()
+        {
+            if (cmbProfileLogOn.SelectedIndex < 0)
+            {
+                return;
+            }
+            
+            XTUProfile selectedProfile = Profiles[cmbProfileLogOn.SelectedIndex];
+            RegistryManager.AddLogonProfileKey(selectedProfile);
         }
     }
 }

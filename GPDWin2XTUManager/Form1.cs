@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.ServiceProcess;
 using System.Windows.Forms;
+using GPDWin2XTUManager.UpdateChecks;
 using Newtonsoft.Json;
 
 namespace GPDWin2XTUManager
@@ -12,6 +13,8 @@ namespace GPDWin2XTUManager
     {
         private List<Button> _profileButtons = new List<Button>();
         private List<XTUProfile> _xtuProfiles = new List<XTUProfile>();
+
+        private GithubRelease _newRelease;
 
         public MainForm(string[] args = null)
         {
@@ -23,23 +26,28 @@ namespace GPDWin2XTUManager
             {
                 return;
             }
-            
+
             if (args.Length > 0)
             {
                 if (args.Length == 4) // Temp profile application. Parameters: minW maxW cpuUV gpuUV
-                {                   
-                    XTUProfile tempProfile = new XTUProfile("TEMP", Convert.ToDouble(args[0]),Convert.ToDouble(args[1]),Convert.ToInt32(args[2]),Convert.ToInt32(args[3]));
+                {
+                    XTUProfile tempProfile = new XTUProfile("TEMP", Convert.ToDouble(args[0]), Convert.ToDouble(args[1]), Convert.ToInt32(args[2]), Convert.ToInt32(args[3]));
                     ApplyXTUProfile(tempProfile);
                     Environment.Exit(0);
                 }
                 else if (args.Length == 1) // Apply profile by name. Parameter: profile name.
                 {
                     XTUProfile profileToApply = _xtuProfiles.Find(p => p.Name == args[0]);
-                    
+
                     if (profileToApply != null)
                     {
                         ApplyXTUProfile(profileToApply);
                         Environment.Exit(0);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Attempted to start a profile named " + args[0] + " that isn't defined. Closing application.", "GPD Win 2 XTU Manager: Profile not defined!",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                        Environment.Exit(404);
                     }
                 }
                 else
@@ -51,9 +59,16 @@ namespace GPDWin2XTUManager
 
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private async void MainForm_Load(object sender, EventArgs e)
         {
-            Text += " v " + Shared.VERSION;
+            Text += " v" + Shared.VERSION;
+            _newRelease = await UpdateChecker.CheckForUpdates();
+
+            if (_newRelease != null)
+            {
+                btnUpdateAvailable.Visible = true;
+                btnUpdateAvailable.Text = "v" + _newRelease.tag_name + " is available!\r\nClick for changelog.";
+            }
         }
 
         private void CheckForXTU()
@@ -191,7 +206,7 @@ namespace GPDWin2XTUManager
         private void ApplyXTUProfile(XTUProfile xtuProfile)
         {
             StartXTUService();
-            
+
             string minWResult = ExecuteInXTUAndGetOutput("-t -id 48 -v " + xtuProfile.MinimumWatt);
             string maxWResult = ExecuteInXTUAndGetOutput("-t -id 47 -v " + xtuProfile.MaximumWatt);
             string cpuUvResult = ExecuteInXTUAndGetOutput("-t -id 34 -v -" + xtuProfile.CPUUndervolt);
@@ -200,11 +215,15 @@ namespace GPDWin2XTUManager
             if (minWResult.Contains("Successful") && maxWResult.Contains("Successful") && cpuUvResult.Contains("Successful") && gpuUvResult.Contains("Successful"))
             {
                 txtInfo.Text = "Applied " + xtuProfile.Name + " profile succesfully!";
+                Console.WriteLine("Applied " + xtuProfile.Name + " profile succesfully!");
             }
             else
             {
                 txtInfo.Text = "Failed to fully apply " + xtuProfile.Name + " profile. Results:\n";
                 txtInfo.Text += minWResult + "\n" + maxWResult + "\n" + cpuUvResult + "\n" + gpuUvResult + "\n";
+
+                Console.WriteLine("Failed to fully apply " + xtuProfile.Name + " profile. Results:\n");
+                Console.WriteLine(minWResult + "\n" + maxWResult + "\n" + cpuUvResult + "\n" + gpuUvResult + "\n");
             }
 
             StopXTUService();
@@ -217,12 +236,15 @@ namespace GPDWin2XTUManager
             {
                 TimeSpan timeout = TimeSpan.FromMilliseconds(1000 * 15);
 
-                service.Start();
-                service.WaitForStatus(ServiceControllerStatus.Running, timeout);
+                if (service.Status != ServiceControllerStatus.Running)
+                {
+                    service.Start();
+                    service.WaitForStatus(ServiceControllerStatus.Running, timeout);
+                }
             }
-            catch
+            catch (Exception e)
             {
-                Console.WriteLine("Error: XTU Service not found!");
+                Console.WriteLine("Error: XTU Service not found! " + e);
             }
         }
 
@@ -298,6 +320,15 @@ namespace GPDWin2XTUManager
         private void FrmOptionsOnFormClosed(object sender, FormClosedEventArgs formClosedEventArgs)
         {
             LoadProfilesIntoList();
+        }
+
+        private void btnUpdateAvailable_Click(object sender, EventArgs e)
+        {
+            // Show changelog, ask if user wants to open release page. If yes, open page in browser.
+            if (MessageBox.Show(_newRelease.name + "\n\nChangelog:\n" + _newRelease.body + "\n\nDo you want to open the release page?", "Update available!", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                Process.Start(_newRelease.html_url);
+            }
         }
     }
 }
