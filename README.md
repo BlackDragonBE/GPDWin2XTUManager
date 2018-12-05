@@ -47,6 +47,9 @@ These will apply the settings and immediately close the application afterwards. 
 
 ## FAQ
 
+Q: I love this! Can I buy you a beer/coffee?  
+A: Sure! You can donate [here](https://www.paypal.me/blackdragonbe). Thanks! <3
+
 Q: Do I still need to download and install the Intel Extreme Tuning Utility?  
 A: Yes! This application "talks" with XTU in order to apply the settings. Download it here: https://downloadcenter.intel.com/download/24075/Intel-Extreme-Tuning-Utility-Intel-XTU-
 The app will also prompt you to download XTU if it's not installed yet.  
@@ -54,11 +57,11 @@ The app will also prompt you to download XTU if it's not installed yet.
 Q: Does XTU need to be constantly running in the background while using this?  
 A: Nope, the application starts and stops the XTU service by itself. The XTU window doesn't even need to be opened as only the CLI (command line interface) is used.
 
+Q: How can I update the application?  
+A: Simply download the [newest release](https://github.com/BlackDragonBE/GPDWin2XTUManager/releases), unpack it and replace the contents of the folder with that of the older version. When coming from 1.02 or older, make sure none of your profile names contain spaces before attempting to load them at logon.
+
 Q: Why is it so ugly?  
 A: Because I'm most familiar with [WinForms](https://en.wikipedia.org/wiki/Windows_Forms) and I didn't want to learn how to use [WPF](https://en.wikipedia.org/wiki/Windows_Presentation_Foundation) just yet. I personally do like the "old school" aesthetic though.
-
-Q: I love this! Can I buy you a beer/coffee?  
-A: Sure! You can donate [here](https://www.paypal.me/blackdragonbe). Thanks! <3
 
 Q: I'd like to see [FEATURE HERE] implemented.  
 A: First, that's not a question. Second, feel free to contact me on [Reddit](https://www.reddit.com/user/BlackDragonBE/) or [Twitter](https://twitter.com/BlackDragonBE) with any suggestions.
@@ -76,4 +79,4 @@ Keep in mind that this is a free hobby project so I might not be able to resolve
 
 ## Feature Wish List
 
-- Option to apply a profile at system log on.
+You tell me! :)
