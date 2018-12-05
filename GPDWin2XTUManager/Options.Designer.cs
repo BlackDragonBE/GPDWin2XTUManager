@@ -284,6 +284,7 @@
             this.cmbProfileLogOn.Name = "cmbProfileLogOn";
             this.cmbProfileLogOn.Size = new System.Drawing.Size(186, 28);
             this.cmbProfileLogOn.TabIndex = 19;
+            this.cmbProfileLogOn.Visible = false;
             // 
             // chkProfileLogOn
             // 
@@ -295,6 +296,7 @@
             this.chkProfileLogOn.TabIndex = 20;
             this.chkProfileLogOn.Text = "Apply profile at log on:";
             this.chkProfileLogOn.UseVisualStyleBackColor = true;
+            this.chkProfileLogOn.Visible = false;
             // 
             // label6
             // 
@@ -304,6 +306,7 @@
             this.label6.Size = new System.Drawing.Size(407, 43);
             this.label6.TabIndex = 18;
             this.label6.Text = "Note: Renaming or removing this profile will remove the log on entry!";
+            this.label6.Visible = false;
             // 
             // Options
             // 

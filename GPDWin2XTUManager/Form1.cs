@@ -16,7 +16,6 @@ namespace GPDWin2XTUManager
         public MainForm(string[] args = null)
         {
             InitializeComponent();
-            MessageBox.Show(Shared.LogonRegistryKeyExists().ToString());
             CheckForXTU();
             StartXTUService();
 
