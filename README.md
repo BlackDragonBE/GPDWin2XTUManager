@@ -22,6 +22,8 @@ The default values will be the same as the STOCK profile, you can alter these to
 
 To delete the selected profile, press the **-** button. The application will ask if you're sure to prevent accidental removals.
 
+You can automatically apply any of the profiles after logging in by checking the **Apply profile at log on** checkbox and choosing a profile in the dropdown next to it. Unchecking the checkbox will remove the log on entry from the registry.
+
 When you're done making changes, either close the window using the Windows **close button** or press the **OK button**. The profile buttons will reflect the changes you've made.
 
 Click any of the defined profile buttons to apply the XTU profile. This will pass the settings to XTU and close the service. 
