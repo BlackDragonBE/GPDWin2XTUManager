@@ -43,10 +43,15 @@
             this.btnSettingsOK = new System.Windows.Forms.Button();
             this.numGPUuv = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbProfileLogOn = new System.Windows.Forms.ComboBox();
+            this.chkProfileLogOn = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numMinW)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxW)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCPUuv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGPUuv)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstOptionsProfiles
@@ -63,7 +68,7 @@
             "6",
             "7",
             "8"});
-            this.lstOptionsProfiles.Location = new System.Drawing.Point(8, 10);
+            this.lstOptionsProfiles.Location = new System.Drawing.Point(9, 25);
             this.lstOptionsProfiles.Name = "lstOptionsProfiles";
             this.lstOptionsProfiles.Size = new System.Drawing.Size(173, 204);
             this.lstOptionsProfiles.TabIndex = 0;
@@ -73,7 +78,7 @@
             // 
             this.btnAddProfile.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnAddProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddProfile.Location = new System.Drawing.Point(8, 230);
+            this.btnAddProfile.Location = new System.Drawing.Point(9, 232);
             this.btnAddProfile.Name = "btnAddProfile";
             this.btnAddProfile.Size = new System.Drawing.Size(74, 39);
             this.btnAddProfile.TabIndex = 7;
@@ -85,7 +90,7 @@
             // 
             this.btnDeleteProfile.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnDeleteProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteProfile.Location = new System.Drawing.Point(107, 230);
+            this.btnDeleteProfile.Location = new System.Drawing.Point(108, 232);
             this.btnDeleteProfile.Name = "btnDeleteProfile";
             this.btnDeleteProfile.Size = new System.Drawing.Size(74, 39);
             this.btnDeleteProfile.TabIndex = 8;
@@ -97,7 +102,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(187, 13);
+            this.label1.Location = new System.Drawing.Point(188, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 20);
             this.label1.TabIndex = 8;
@@ -107,10 +112,10 @@
             // 
             this.txtName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.Location = new System.Drawing.Point(345, 10);
+            this.txtName.Location = new System.Drawing.Point(384, 25);
             this.txtName.MaxLength = 12;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(227, 26);
+            this.txtName.Size = new System.Drawing.Size(180, 26);
             this.txtName.TabIndex = 1;
             this.txtName.Text = "NEW PROFILE";
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
@@ -119,7 +124,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(187, 48);
+            this.label2.Location = new System.Drawing.Point(188, 63);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(137, 20);
             this.label2.TabIndex = 10;
@@ -134,7 +139,7 @@
             0,
             0,
             65536});
-            this.numMinW.Location = new System.Drawing.Point(345, 46);
+            this.numMinW.Location = new System.Drawing.Point(384, 61);
             this.numMinW.Maximum = new decimal(new int[] {
             15,
             0,
@@ -146,7 +151,7 @@
             0,
             0});
             this.numMinW.Name = "numMinW";
-            this.numMinW.Size = new System.Drawing.Size(227, 26);
+            this.numMinW.Size = new System.Drawing.Size(180, 26);
             this.numMinW.TabIndex = 2;
             this.numMinW.Value = new decimal(new int[] {
             7,
@@ -164,7 +169,7 @@
             0,
             0,
             65536});
-            this.numMaxW.Location = new System.Drawing.Point(345, 78);
+            this.numMaxW.Location = new System.Drawing.Point(384, 93);
             this.numMaxW.Maximum = new decimal(new int[] {
             15,
             0,
@@ -176,7 +181,7 @@
             0,
             0});
             this.numMaxW.Name = "numMaxW";
-            this.numMaxW.Size = new System.Drawing.Size(227, 26);
+            this.numMaxW.Size = new System.Drawing.Size(180, 26);
             this.numMaxW.TabIndex = 3;
             this.numMaxW.Value = new decimal(new int[] {
             15,
@@ -189,7 +194,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(187, 80);
+            this.label3.Location = new System.Drawing.Point(188, 95);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(141, 20);
             this.label3.TabIndex = 12;
@@ -198,9 +203,9 @@
             // numCPUuv
             // 
             this.numCPUuv.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numCPUuv.Location = new System.Drawing.Point(345, 110);
+            this.numCPUuv.Location = new System.Drawing.Point(384, 125);
             this.numCPUuv.Name = "numCPUuv";
-            this.numCPUuv.Size = new System.Drawing.Size(227, 26);
+            this.numCPUuv.Size = new System.Drawing.Size(180, 26);
             this.numCPUuv.TabIndex = 4;
             this.numCPUuv.ValueChanged += new System.EventHandler(this.numCPUuv_ValueChanged);
             // 
@@ -208,7 +213,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(187, 112);
+            this.label4.Location = new System.Drawing.Point(188, 127);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(152, 20);
             this.label4.TabIndex = 14;
@@ -218,9 +223,9 @@
             // 
             this.btnSettingsOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnSettingsOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSettingsOK.Location = new System.Drawing.Point(345, 203);
+            this.btnSettingsOK.Location = new System.Drawing.Point(426, 287);
             this.btnSettingsOK.Name = "btnSettingsOK";
-            this.btnSettingsOK.Size = new System.Drawing.Size(227, 66);
+            this.btnSettingsOK.Size = new System.Drawing.Size(146, 86);
             this.btnSettingsOK.TabIndex = 6;
             this.btnSettingsOK.Text = "OK";
             this.btnSettingsOK.UseVisualStyleBackColor = true;
@@ -229,9 +234,9 @@
             // numGPUuv
             // 
             this.numGPUuv.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numGPUuv.Location = new System.Drawing.Point(345, 142);
+            this.numGPUuv.Location = new System.Drawing.Point(384, 157);
             this.numGPUuv.Name = "numGPUuv";
-            this.numGPUuv.Size = new System.Drawing.Size(227, 26);
+            this.numGPUuv.Size = new System.Drawing.Size(180, 26);
             this.numGPUuv.TabIndex = 5;
             this.numGPUuv.ValueChanged += new System.EventHandler(this.numGPUuv_ValueChanged);
             // 
@@ -239,35 +244,81 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(187, 144);
+            this.label5.Location = new System.Drawing.Point(188, 159);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(154, 20);
             this.label5.TabIndex = 17;
             this.label5.Text = "GPU Undervolt (mV)";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.btnDeleteProfile);
+            this.groupBox1.Controls.Add(this.numGPUuv);
+            this.groupBox1.Controls.Add(this.btnAddProfile);
+            this.groupBox1.Controls.Add(this.txtName);
+            this.groupBox1.Controls.Add(this.lstOptionsProfiles);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.numMinW);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.numMaxW);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.numCPUuv);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(8, 4);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(571, 277);
+            this.groupBox1.TabIndex = 18;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Profiles";
+            // 
+            // cmbProfileLogOn
+            // 
+            this.cmbProfileLogOn.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbProfileLogOn.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbProfileLogOn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbProfileLogOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbProfileLogOn.FormattingEnabled = true;
+            this.cmbProfileLogOn.Location = new System.Drawing.Point(234, 287);
+            this.cmbProfileLogOn.Name = "cmbProfileLogOn";
+            this.cmbProfileLogOn.Size = new System.Drawing.Size(186, 28);
+            this.cmbProfileLogOn.TabIndex = 19;
+            // 
+            // chkProfileLogOn
+            // 
+            this.chkProfileLogOn.AutoSize = true;
+            this.chkProfileLogOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkProfileLogOn.Location = new System.Drawing.Point(17, 289);
+            this.chkProfileLogOn.Name = "chkProfileLogOn";
+            this.chkProfileLogOn.Size = new System.Drawing.Size(183, 24);
+            this.chkProfileLogOn.TabIndex = 20;
+            this.chkProfileLogOn.Text = "Apply profile at log on:";
+            this.chkProfileLogOn.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(13, 330);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(407, 43);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "Note: Renaming or removing this profile will remove the log on entry!";
+            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 281);
-            this.Controls.Add(this.numGPUuv);
-            this.Controls.Add(this.label5);
+            this.ClientSize = new System.Drawing.Size(584, 385);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.chkProfileLogOn);
+            this.Controls.Add(this.cmbProfileLogOn);
             this.Controls.Add(this.btnSettingsOK);
-            this.Controls.Add(this.numCPUuv);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.numMaxW);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.numMinW);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtName);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnDeleteProfile);
-            this.Controls.Add(this.btnAddProfile);
-            this.Controls.Add(this.lstOptionsProfiles);
+            this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(600, 320);
+            this.MaximumSize = new System.Drawing.Size(600, 450);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(600, 320);
             this.Name = "Options";
@@ -280,6 +331,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numMaxW)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCPUuv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGPUuv)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,5 +354,9 @@
         private System.Windows.Forms.Button btnSettingsOK;
         private System.Windows.Forms.NumericUpDown numGPUuv;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox cmbProfileLogOn;
+        private System.Windows.Forms.CheckBox chkProfileLogOn;
+        private System.Windows.Forms.Label label6;
     }
 }

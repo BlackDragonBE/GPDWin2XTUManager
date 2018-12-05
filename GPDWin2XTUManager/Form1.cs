@@ -19,18 +19,28 @@ namespace GPDWin2XTUManager
             CheckForXTU();
             StartXTUService();
 
-            if (args != null && args.Length > 0)
+            if (args == null)
             {
-                if (args.Length == 4)
-                {
-                    for (int i = 0; i < args.Length; i++)
-                    {
-                        MessageBox.Show("arg" + i + " : " + args[i]);
-                    }
-                    
+                return;
+            }
+            
+            if (args.Length > 0)
+            {
+                if (args.Length == 4) // Temp profile application. Parameters: minW maxW cpuUV gpuUV
+                {                   
                     XTUProfile tempProfile = new XTUProfile("TEMP", Convert.ToDouble(args[0]),Convert.ToDouble(args[1]),Convert.ToInt32(args[2]),Convert.ToInt32(args[3]));
                     ApplyXTUProfile(tempProfile);
                     Application.Exit();
+                }
+                else if (args.Length == 1) // Apply profile by name. Parameter: profile name.
+                {
+                    XTUProfile profileToApply = _xtuProfiles.Find(p => p.Name == args[0]);
+                    
+                    if (profileToApply != null)
+                    {
+                        ApplyXTUProfile(profileToApply);
+                        Application.Exit();
+                    }
                 }
                 else
                 {
@@ -183,8 +193,8 @@ namespace GPDWin2XTUManager
             
             string minWResult = ExecuteInXTUAndGetOutput("-t -id 48 -v " + xtuProfile.MinimumWatt);
             string maxWResult = ExecuteInXTUAndGetOutput("-t -id 47 -v " + xtuProfile.MaximumWatt);
-            string cpuUvResult = ExecuteInXTUAndGetOutput("-t -id 34 -v " + xtuProfile.CPUUndervolt);
-            string gpuUvResult = ExecuteInXTUAndGetOutput("-t -id 100 -v " + xtuProfile.GPUUndervolt);
+            string cpuUvResult = ExecuteInXTUAndGetOutput("-t -id 34 -v -" + xtuProfile.CPUUndervolt);
+            string gpuUvResult = ExecuteInXTUAndGetOutput("-t -id 100 -v -" + xtuProfile.GPUUndervolt);
 
             if (minWResult.Contains("Successful") && maxWResult.Contains("Successful") && cpuUvResult.Contains("Successful") && gpuUvResult.Contains("Successful"))
             {

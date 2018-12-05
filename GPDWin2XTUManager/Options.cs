@@ -31,6 +31,9 @@ namespace GPDWin2XTUManager
         {
             lstOptionsProfiles.Items.Clear();
             lstOptionsProfiles.Items.AddRange(Profiles.ToArray());
+            
+            cmbProfileLogOn.Items.Clear();
+            cmbProfileLogOn.Items.AddRange(Profiles.ToArray());
 
             if (Profiles.Count > 7)
             {

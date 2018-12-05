@@ -10,8 +10,9 @@ namespace GPDWin2XTUManager
 {
     public static class Shared
     {
-        public static readonly decimal VERSION = 1.00m;
+        public static readonly decimal VERSION = 1.10m;
         public static readonly string SETTINGS_PATH = "Settings.json";
+        public static readonly string LOGONFILE_PATH = "logon";
         public static readonly string XTU_PATH = @"C:\Program Files (x86)\Intel\Intel(R) Extreme Tuning Utility\Client\xtucli.exe";
 
         public static void SaveProfilesToDisk(List<XTUProfile> profiles)
@@ -23,6 +24,30 @@ namespace GPDWin2XTUManager
             {
                 writer.Formatting = Formatting.Indented;
                 serializer.Serialize(writer, profiles);
+            }
+        }
+
+        public static bool LogonFileExists()
+        {
+            return File.Exists(LOGONFILE_PATH);
+        }
+
+        public static string GetLogonProfile()
+        {
+            using (StreamReader sr = new StreamReader(LOGONFILE_PATH))
+            {
+                return sr.ReadToEnd();
+            }
+        }
+
+        public static void CreateAutoLogon(XTUProfile profile)
+        {
+            using (var fileStream = File.Open(LOGONFILE_PATH, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            {
+                using (StreamWriter sw = new StreamWriter(LOGONFILE_PATH, true))
+                {
+                    sw.Write(profile.Name);
+                }
             }
         }
     }
