@@ -73,6 +73,7 @@ A: Sure, just share the **Settings.json** file in the application folder, that h
 
 Q: I've used your application and I got a BSOD! What the frick?!  
 A: Be sure to set up and test any values, especially the undervolts. Every device is different and has different stable settings. Don't be afraid to experiment and ask advice on [Reddit](https://www.reddit.com/r/gpdwin/)!
+If you've set up an unstable profile to be applied at log on, [boot into safe mode](https://www.digitalcitizen.life/4-ways-boot-safe-mode-windows-10) and use the application to disable the automatic applying in the settings. Temporarily moving or renaming the executable by using WinPE or a linux live usb also works.
 
 ## Issues
 
