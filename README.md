@@ -63,7 +63,7 @@ Q: How can I update the application?
 A: Simply download the [newest release](https://github.com/BlackDragonBE/GPDWin2XTUManager/releases), unpack it and replace the contents of the folder with that of the older version. When coming from 1.02 or older, make sure none of your profile names contain spaces before attempting to load them at logon.
 
 Q: Why is it so ugly?  
-A: Because I'm most familiar with [WinForms](https://en.wikipedia.org/wiki/Windows_Forms) and I didn't want to learn how to use [WPF](https://en.wikipedia.org/wiki/Windows_Presentation_Foundation) just yet. I personally do like the "old school" aesthetic though.
+A: Because I'm more of a programmer and a tinkerer than a designer. I've also made the UI extra chunky so it's easier to use with the touchscreen. If there are any designers out there that are familiar with WinForms and know how to make the application more attractive, feel free to reach out to me! 
 
 Q: I'd like to see [FEATURE HERE] implemented.  
 A: First, that's not a question. Second, feel free to contact me on [Reddit](https://www.reddit.com/user/BlackDragonBE/) or [Twitter](https://twitter.com/BlackDragonBE) with any suggestions.
