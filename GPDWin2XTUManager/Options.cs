@@ -138,6 +138,7 @@ namespace GPDWin2XTUManager
                 Profiles.Add(new XTUProfile("NEW_PROFILE", 7, 15, 0, 0));
                 UpdateProfileList();
                 CheckForLogonKey();
+                lstOptionsProfiles.SelectedIndex = lstOptionsProfiles.Items.Count - 1;
             }
         }
 

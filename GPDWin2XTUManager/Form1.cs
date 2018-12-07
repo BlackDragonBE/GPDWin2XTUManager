@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.ServiceProcess;
+using System.Threading;
 using System.Windows.Forms;
 using GPDWin2XTUManager.UpdateChecks;
 using Newtonsoft.Json;
@@ -62,6 +63,8 @@ namespace GPDWin2XTUManager
         private async void MainForm_Load(object sender, EventArgs e)
         {
             Text += " v" + Shared.VERSION;
+            ReadCurrentValues();
+
             _newRelease = await UpdateChecker.CheckForUpdates();
 
             if (_newRelease != null)
@@ -69,6 +72,7 @@ namespace GPDWin2XTUManager
                 btnUpdateAvailable.Visible = true;
                 btnUpdateAvailable.Text = "v" + _newRelease.tag_name + " is available!\r\nClick for changelog.";
             }
+
         }
 
         private void CheckForXTU()
@@ -93,7 +97,6 @@ namespace GPDWin2XTUManager
         private void InitializeProgram()
         {
             FillButtonList();
-            ReadCurrentValues();
             LoadProfilesIntoList();
         }
 
@@ -195,6 +198,8 @@ namespace GPDWin2XTUManager
         {
             if (number < _xtuProfiles.Count)
             {
+                txtInfo.Text = "Applying profile, please wait...";
+                txtInfo.Refresh();
                 ApplyXTUProfile(_xtuProfiles[number]);
             }
             else
