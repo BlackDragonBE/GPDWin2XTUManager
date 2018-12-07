@@ -171,9 +171,10 @@ namespace GPDWin2XTUManager
             {
                 return;
             }
-            
+
             int selectedProfileIndex = lstOptionsProfiles.SelectedIndex;
             int selectedLogonIndex = cmbProfileLogOn.SelectedIndex;
+            int selectedTextIndex = txtName.SelectionStart;
 
             // Check for logon key if enabled
             if (chkProfileLogOn.Checked)
@@ -187,6 +188,7 @@ namespace GPDWin2XTUManager
                 UpdateProfileList();
                 lstOptionsProfiles.SelectedIndex = selectedProfileIndex;
                 cmbProfileLogOn.SelectedIndex = selectedLogonIndex;
+                txtName.SelectionStart = selectedTextIndex;
             }
 
         }
