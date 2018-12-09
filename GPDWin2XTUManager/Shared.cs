@@ -42,6 +42,9 @@ namespace GPDWin2XTUManager
             IMAGE_RESOURCES_DICTIONARY.Add(ProfileImage.Performance, Resources.Speedometer);
             IMAGE_RESOURCES_DICTIONARY.Add(ProfileImage.Gamepad, Resources.Gamepad);
             IMAGE_RESOURCES_DICTIONARY.Add(ProfileImage.Dpad, Resources.Dpad);
+            IMAGE_RESOURCES_DICTIONARY.Add(ProfileImage.Heart, Resources.Heart);
+            IMAGE_RESOURCES_DICTIONARY.Add(ProfileImage.Processor, Resources.Processor);
+            IMAGE_RESOURCES_DICTIONARY.Add(ProfileImage.Videocard, Resources.Videocard);
         }
     }
 

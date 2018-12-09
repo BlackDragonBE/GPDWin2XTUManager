@@ -8,6 +8,6 @@ namespace GPDWin2XTUManager
 {
     public enum ProfileImage
     {
-        Battery, Gaming, GPD, Performance, Gamepad, Dpad
+        Battery, Gaming, GPD, Performance, Gamepad, Dpad, Heart, Processor, Videocard
     }
 }

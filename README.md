@@ -16,11 +16,11 @@ To start creating your own profile, either click any of the **Create profile...*
 ![](Images/Options.png)
 
 The defined profiles are shown on the left side. Selecting any of these updates the fields on the right. The STOCK profile can't be adjusted.  
-To create a new profile, click the **+** button below the profile list. A new profile will be added to the list. Click on the newly made profile to select it.
+To create a new profile, click the **plus** button below the profile list. A new profile will be added to the list. Click on the newly made profile to select it.
 
 The default values will be the same as the STOCK profile, you can alter these to your liking. Every change you make here is automatically saved to the profiles list.
 
-To delete the selected profile, press the **-** button. The application will ask if you're sure to prevent accidental removals.
+To delete the selected profile, press the **trashcan** button. The application will ask if you're sure to prevent accidental removals.
 
 You can automatically apply any of the profiles after logging in by checking the **Apply profile at log on** checkbox and choosing a profile in the dropdown next to it. Unchecking the checkbox will remove the log on entry from the registry.
 

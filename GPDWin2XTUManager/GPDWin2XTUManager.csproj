@@ -165,6 +165,9 @@
     <None Include="Icons\Trash.png" />
     <None Include="Icons\Dpad.png" />
     <None Include="Icons\Gamepad.png" />
+    <None Include="Icons\Heart.png" />
+    <None Include="Icons\Processor.png" />
+    <None Include="Icons\Videocard.png" />
     <Content Include="intel.ico" />
     <None Include="Resources\Download.png" />
     <None Include="Resources\Settings.png" />
