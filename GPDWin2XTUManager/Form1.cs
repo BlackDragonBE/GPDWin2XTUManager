@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.ServiceProcess;
 using System.Threading;
 using System.Windows.Forms;
+using GPDWin2XTUManager.Properties;
 using GPDWin2XTUManager.UpdateChecks;
 using Newtonsoft.Json;
 
@@ -32,7 +34,7 @@ namespace GPDWin2XTUManager
             {
                 if (args.Length == 4) // Temp profile application. Parameters: minW maxW cpuUV gpuUV
                 {
-                    XTUProfile tempProfile = new XTUProfile("TEMP", Convert.ToDouble(args[0]), Convert.ToDouble(args[1]), Convert.ToInt32(args[2]), Convert.ToInt32(args[3]));
+                    XTUProfile tempProfile = new XTUProfile("TEMP", Convert.ToDouble(args[0]), Convert.ToDouble(args[1]), Convert.ToInt32(args[2]), Convert.ToInt32(args[3]), ProfileImage.Gaming);
                     ApplyXTUProfile(tempProfile);
                     Environment.Exit(0);
                 }
@@ -47,7 +49,7 @@ namespace GPDWin2XTUManager
                     }
                     else
                     {
-                        MessageBox.Show("Attempted to start a profile named " + args[0] + " that isn't defined. Closing application.", "GPD Win 2 XTU Manager: Profile not defined!",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                        MessageBox.Show("Attempted to start a profile named " + args[0] + " that isn't defined. Closing application.", "GPD Win 2 XTU Manager: Profile not defined!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         Environment.Exit(404);
                     }
                 }
@@ -90,15 +92,18 @@ namespace GPDWin2XTUManager
             }
             else
             {
-                InitializeProgram();
+                InitializeUI();
             }
         }
 
-        private void InitializeProgram()
+        private void InitializeUI()
         {
+            Shared.PrepareImages();
             FillButtonList();
             LoadProfilesIntoList();
         }
+
+
 
         private void ReadCurrentValues()
         {
@@ -160,6 +165,7 @@ namespace GPDWin2XTUManager
             }
 
             _xtuProfiles = JsonConvert.DeserializeObject<List<XTUProfile>>(File.ReadAllText(Shared.SETTINGS_PATH));
+            _xtuProfiles[0].ProfileImage = ProfileImage.GPD;
             RefreshButtonInfo();
         }
 
@@ -171,12 +177,14 @@ namespace GPDWin2XTUManager
                 {
                     XTUProfile profile = _xtuProfiles[i];
                     _profileButtons[i].Text = profile.Name + "\n\n" + "Min W: " + profile.MinimumWatt + "\nMax W: " +
-                                              profile.MaximumWatt + "\nCPU Undervolt: -" + profile.CPUUndervolt +
-                                              " mV" + "\nGPU Undervolt: -" + profile.GPUUndervolt + " mV";
+                                              profile.MaximumWatt + "\nCPU: -" + profile.CPUUndervolt +
+                                              " mV" + "\nGPU: -" + profile.GPUUndervolt + " mV";
+                    _profileButtons[i].Image = Shared.IMAGE_RESOURCES_DICTIONARY[profile.ProfileImage];
                 }
                 else
                 {
                     _profileButtons[i].Text = "Create profile...";
+                    _profileButtons[i].Image = Resources.Plus;
                 }
 
 
@@ -191,7 +199,7 @@ namespace GPDWin2XTUManager
 
         private void AddDefaultProfiles()
         {
-            _xtuProfiles.Add(new XTUProfile("STOCK", 7, 15, 0, 0));
+            _xtuProfiles.Add(new XTUProfile("STOCK", 7, 15, 0, 0, ProfileImage.GPD));
         }
 
         public void ApplyProfileByButton(int number)

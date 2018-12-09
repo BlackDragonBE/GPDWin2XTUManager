@@ -30,8 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Options));
             this.lstOptionsProfiles = new System.Windows.Forms.ListBox();
-            this.btnAddProfile = new System.Windows.Forms.Button();
-            this.btnDeleteProfile = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -40,17 +38,23 @@
             this.label3 = new System.Windows.Forms.Label();
             this.numCPUuv = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnSettingsOK = new System.Windows.Forms.Button();
             this.numGPUuv = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbProfileImage = new System.Windows.Forms.ComboBox();
             this.cmbProfileLogOn = new System.Windows.Forms.ComboBox();
             this.chkProfileLogOn = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnSettingsOK = new System.Windows.Forms.Button();
+            this.picIcon = new System.Windows.Forms.PictureBox();
+            this.btnDeleteProfile = new System.Windows.Forms.Button();
+            this.btnAddProfile = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numMinW)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxW)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCPUuv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numGPUuv)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // lstOptionsProfiles
@@ -72,30 +76,6 @@
             this.lstOptionsProfiles.Size = new System.Drawing.Size(173, 204);
             this.lstOptionsProfiles.TabIndex = 0;
             this.lstOptionsProfiles.SelectedIndexChanged += new System.EventHandler(this.lstOptionsProfiles_SelectedIndexChanged);
-            // 
-            // btnAddProfile
-            // 
-            this.btnAddProfile.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnAddProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddProfile.Location = new System.Drawing.Point(9, 232);
-            this.btnAddProfile.Name = "btnAddProfile";
-            this.btnAddProfile.Size = new System.Drawing.Size(74, 39);
-            this.btnAddProfile.TabIndex = 7;
-            this.btnAddProfile.Text = "+";
-            this.btnAddProfile.UseVisualStyleBackColor = true;
-            this.btnAddProfile.Click += new System.EventHandler(this.btnAddProfile_Click);
-            // 
-            // btnDeleteProfile
-            // 
-            this.btnDeleteProfile.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnDeleteProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteProfile.Location = new System.Drawing.Point(108, 232);
-            this.btnDeleteProfile.Name = "btnDeleteProfile";
-            this.btnDeleteProfile.Size = new System.Drawing.Size(74, 39);
-            this.btnDeleteProfile.TabIndex = 8;
-            this.btnDeleteProfile.Text = "-";
-            this.btnDeleteProfile.UseVisualStyleBackColor = true;
-            this.btnDeleteProfile.Click += new System.EventHandler(this.btnDeleteProfile_Click);
             // 
             // label1
             // 
@@ -218,18 +198,6 @@
             this.label4.TabIndex = 14;
             this.label4.Text = "CPU Undervolt (mV)";
             // 
-            // btnSettingsOK
-            // 
-            this.btnSettingsOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnSettingsOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSettingsOK.Location = new System.Drawing.Point(426, 287);
-            this.btnSettingsOK.Name = "btnSettingsOK";
-            this.btnSettingsOK.Size = new System.Drawing.Size(146, 86);
-            this.btnSettingsOK.TabIndex = 6;
-            this.btnSettingsOK.Text = "OK";
-            this.btnSettingsOK.UseVisualStyleBackColor = true;
-            this.btnSettingsOK.Click += new System.EventHandler(this.btnSettingsOK_Click);
-            // 
             // numGPUuv
             // 
             this.numGPUuv.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -251,6 +219,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.picIcon);
+            this.groupBox1.Controls.Add(this.cmbProfileImage);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.btnDeleteProfile);
             this.groupBox1.Controls.Add(this.numGPUuv);
@@ -267,10 +238,22 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(8, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(571, 277);
+            this.groupBox1.Size = new System.Drawing.Size(571, 298);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Profiles";
+            // 
+            // cmbProfileImage
+            // 
+            this.cmbProfileImage.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbProfileImage.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbProfileImage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbProfileImage.FormattingEnabled = true;
+            this.cmbProfileImage.Location = new System.Drawing.Point(384, 211);
+            this.cmbProfileImage.Name = "cmbProfileImage";
+            this.cmbProfileImage.Size = new System.Drawing.Size(121, 28);
+            this.cmbProfileImage.TabIndex = 18;
+            this.cmbProfileImage.SelectedIndexChanged += new System.EventHandler(this.cmbProfileImage_SelectedIndexChanged);
             // 
             // cmbProfileLogOn
             // 
@@ -279,7 +262,7 @@
             this.cmbProfileLogOn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProfileLogOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbProfileLogOn.FormattingEnabled = true;
-            this.cmbProfileLogOn.Location = new System.Drawing.Point(234, 289);
+            this.cmbProfileLogOn.Location = new System.Drawing.Point(234, 308);
             this.cmbProfileLogOn.Name = "cmbProfileLogOn";
             this.cmbProfileLogOn.Size = new System.Drawing.Size(186, 28);
             this.cmbProfileLogOn.TabIndex = 19;
@@ -289,13 +272,68 @@
             // 
             this.chkProfileLogOn.AutoSize = true;
             this.chkProfileLogOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkProfileLogOn.Location = new System.Drawing.Point(17, 291);
+            this.chkProfileLogOn.Location = new System.Drawing.Point(17, 310);
             this.chkProfileLogOn.Name = "chkProfileLogOn";
             this.chkProfileLogOn.Size = new System.Drawing.Size(183, 24);
             this.chkProfileLogOn.TabIndex = 20;
             this.chkProfileLogOn.Text = "Apply profile at log on:";
             this.chkProfileLogOn.UseVisualStyleBackColor = true;
             this.chkProfileLogOn.CheckedChanged += new System.EventHandler(this.chkProfileLogOn_CheckedChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(188, 214);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(40, 20);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "Icon";
+            // 
+            // btnSettingsOK
+            // 
+            this.btnSettingsOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSettingsOK.Image = global::GPDWin2XTUManager.Properties.Resources.OK;
+            this.btnSettingsOK.Location = new System.Drawing.Point(426, 308);
+            this.btnSettingsOK.Name = "btnSettingsOK";
+            this.btnSettingsOK.Size = new System.Drawing.Size(146, 65);
+            this.btnSettingsOK.TabIndex = 6;
+            this.btnSettingsOK.Text = "OK";
+            this.btnSettingsOK.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSettingsOK.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSettingsOK.UseVisualStyleBackColor = true;
+            this.btnSettingsOK.Click += new System.EventHandler(this.btnSettingsOK_Click);
+            // 
+            // picIcon
+            // 
+            this.picIcon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picIcon.Location = new System.Drawing.Point(511, 189);
+            this.picIcon.Name = "picIcon";
+            this.picIcon.Size = new System.Drawing.Size(50, 50);
+            this.picIcon.TabIndex = 19;
+            this.picIcon.TabStop = false;
+            // 
+            // btnDeleteProfile
+            // 
+            this.btnDeleteProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteProfile.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteProfile.Image")));
+            this.btnDeleteProfile.Location = new System.Drawing.Point(108, 232);
+            this.btnDeleteProfile.Name = "btnDeleteProfile";
+            this.btnDeleteProfile.Size = new System.Drawing.Size(74, 59);
+            this.btnDeleteProfile.TabIndex = 8;
+            this.btnDeleteProfile.UseVisualStyleBackColor = true;
+            this.btnDeleteProfile.Click += new System.EventHandler(this.btnDeleteProfile_Click);
+            // 
+            // btnAddProfile
+            // 
+            this.btnAddProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddProfile.Image = global::GPDWin2XTUManager.Properties.Resources.Plus;
+            this.btnAddProfile.Location = new System.Drawing.Point(9, 232);
+            this.btnAddProfile.Name = "btnAddProfile";
+            this.btnAddProfile.Size = new System.Drawing.Size(74, 59);
+            this.btnAddProfile.TabIndex = 7;
+            this.btnAddProfile.UseVisualStyleBackColor = true;
+            this.btnAddProfile.Click += new System.EventHandler(this.btnAddProfile_Click);
             // 
             // Options
             // 
@@ -324,6 +362,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numGPUuv)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -348,5 +387,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox cmbProfileLogOn;
         private System.Windows.Forms.CheckBox chkProfileLogOn;
+        private System.Windows.Forms.ComboBox cmbProfileImage;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.PictureBox picIcon;
     }
 }

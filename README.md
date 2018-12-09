@@ -60,8 +60,11 @@ Q: Does XTU need to be constantly running in the background while using this?
 A: Nope, the application starts and stops the XTU service by itself. The XTU window doesn't even need to be opened as only the CLI (command line interface) is used.
 
 Q: How can I update the application?  
-A: Simply download the [newest release](https://github.com/BlackDragonBE/GPDWin2XTUManager/releases), unpack it and replace the contents of the folder with that of the older version. When coming from 1.02 or older, make sure none of your profile names contain spaces before attempting to load them at logon.
-
+A: Simply download the [newest release](https://github.com/BlackDragonBE/GPDWin2XTUManager/releases), unpack it and replace the contents of the folder with that of the older version. When coming from 1.02 or older, make sure none of your profile names contain spaces before attempting to load them at logon.  
+  
+Q: My antivirus detected a trojan in the zip file, should I be concerned?  
+A: I assure you those are false positives. If you know some programming, you can look at the source code to verify it's all safe and you can even compile the application yourself as the repo includes every single file. [The EXE itself does come out 100% clean in virus total](https://www.virustotal.com/#/file/ba977731854d83cd75122f2419c6be94df46483ebbaa097727d8f212430e4125/detection).
+  
 Q: Why is it so ugly?  
 A: Because I'm more of a programmer and a tinkerer than a designer. I've also made the UI extra chunky so it's easier to use with the touchscreen. If there are any designers out there that are familiar with WinForms and know how to make the application more attractive, feel free to reach out to me! 
 

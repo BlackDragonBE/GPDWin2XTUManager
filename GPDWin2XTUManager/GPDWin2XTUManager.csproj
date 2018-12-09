@@ -103,6 +103,7 @@
     <Compile Include="Options.Designer.cs">
       <DependentUpon>Options.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProfileImage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistryManager.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="GPDWin2XTUManager_TemporaryKey.pfx" />
     <None Include="packages.config" />
@@ -156,7 +158,19 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Icons\Battery.png" />
+    <None Include="Icons\Controller.png" />
+    <None Include="Icons\GPD.png" />
+    <None Include="Icons\Speedometer.png" />
+    <None Include="Icons\Trash.png" />
+    <None Include="Icons\Dpad.png" />
+    <None Include="Icons\Gamepad.png" />
     <Content Include="intel.ico" />
+    <None Include="Resources\Download.png" />
+    <None Include="Resources\Settings.png" />
+    <None Include="Resources\OK.png" />
+    <None Include="Resources\Trash.png" />
+    <None Include="Resources\Plus.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

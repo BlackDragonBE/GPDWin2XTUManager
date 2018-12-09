@@ -15,7 +15,7 @@ namespace GPDWin2XTUManager
     public partial class Options : Form
     {
         public List<XTUProfile> Profiles = new List<XTUProfile>();
-        
+
         public Options()
         {
             InitializeComponent();
@@ -25,7 +25,13 @@ namespace GPDWin2XTUManager
         {
             UpdateProfileList();
             CheckForLogonKey();
+            FillIconList();
             lstOptionsProfiles.SelectedIndex = 0;
+        }
+
+        private void FillIconList()
+        {
+            cmbProfileImage.Items.AddRange(Enum.GetNames(typeof(ProfileImage)));
         }
 
         private void CheckForLogonKey()
@@ -60,9 +66,12 @@ namespace GPDWin2XTUManager
 
         private void UpdateProfileList()
         {
+            int selectedProfileIndex = lstOptionsProfiles.SelectedIndex;
+            int selectedLogonProfile = cmbProfileLogOn.SelectedIndex;
+
             lstOptionsProfiles.Items.Clear();
             lstOptionsProfiles.Items.AddRange(Profiles.ToArray());
-            
+
             cmbProfileLogOn.Items.Clear();
             cmbProfileLogOn.Items.AddRange(Profiles.ToArray());
 
@@ -87,13 +96,14 @@ namespace GPDWin2XTUManager
             {
                 return;
             }
-            
+
             XTUProfile selectedProfile = Profiles[lstOptionsProfiles.SelectedIndex];
             txtName.Text = selectedProfile.Name;
-            numMinW.Value = (decimal) selectedProfile.MinimumWatt;
-            numMaxW.Value = (decimal) selectedProfile.MaximumWatt;
+            numMinW.Value = (decimal)selectedProfile.MinimumWatt;
+            numMaxW.Value = (decimal)selectedProfile.MaximumWatt;
             numCPUuv.Value = selectedProfile.CPUUndervolt;
             numGPUuv.Value = selectedProfile.GPUUndervolt;
+            cmbProfileImage.SelectedItem = selectedProfile.ProfileImage.ToString();
 
             if (lstOptionsProfiles.SelectedIndex == 0)
             {
@@ -113,7 +123,7 @@ namespace GPDWin2XTUManager
             numMaxW.Enabled = false;
             numCPUuv.Enabled = false;
             numGPUuv.Enabled = false;
-
+            cmbProfileImage.Enabled = false;
         }
 
         private void EnableEditControls()
@@ -124,6 +134,7 @@ namespace GPDWin2XTUManager
             numMaxW.Enabled = true;
             numCPUuv.Enabled = true;
             numGPUuv.Enabled = true;
+            cmbProfileImage.Enabled = true;
         }
 
         private void btnAddProfile_Click(object sender, EventArgs e)
@@ -135,7 +146,15 @@ namespace GPDWin2XTUManager
         {
             if (Profiles.Count < 8)
             {
-                Profiles.Add(new XTUProfile("NEW_PROFILE", 7, 15, 0, 0));
+                XTUProfile newProfile = new XTUProfile();
+                int newProfileCount = Profiles.Count(p => p.Name.StartsWith(newProfile.Name));
+
+                if (newProfileCount > 0) // Already NEW_PROFILE profiles
+                {
+                    newProfile.Name += (newProfileCount + 1);
+                }
+
+                Profiles.Add(newProfile);
                 UpdateProfileList();
                 CheckForLogonKey();
                 lstOptionsProfiles.SelectedIndex = lstOptionsProfiles.Items.Count - 1;
@@ -152,7 +171,7 @@ namespace GPDWin2XTUManager
             if (lstOptionsProfiles.SelectedIndex > 0)
             {
                 if (MessageBox.Show("Are you sure you want to delete the " + Profiles[lstOptionsProfiles.SelectedIndex].Name + " profile?", "Delete profile?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                {                   
+                {
                     Profiles.RemoveAt(lstOptionsProfiles.SelectedIndex);
                     UpdateProfileList();
                     lstOptionsProfiles.SelectedIndex = 0;
@@ -181,7 +200,7 @@ namespace GPDWin2XTUManager
             {
                 CheckForLogonKey();
             }
-            
+
             if (selectedProfileIndex > 0)
             {
                 Profiles[selectedProfileIndex].Name = txtName.Text.Replace(" ", "_"); // Don't allow spaces
@@ -204,7 +223,7 @@ namespace GPDWin2XTUManager
 
             if (selected > 0)
             {
-                Profiles[selected].MinimumWatt = (double) numMinW.Value;
+                Profiles[selected].MinimumWatt = (double)numMinW.Value;
                 UpdateProfileList();
                 lstOptionsProfiles.SelectedIndex = selected;
             }
@@ -228,7 +247,7 @@ namespace GPDWin2XTUManager
 
             if (selected > 0)
             {
-                Profiles[selected].CPUUndervolt = (int) numCPUuv.Value;
+                Profiles[selected].CPUUndervolt = (int)numCPUuv.Value;
                 UpdateProfileList();
                 lstOptionsProfiles.SelectedIndex = selected;
             }
@@ -247,7 +266,7 @@ namespace GPDWin2XTUManager
         }
 
         private void chkProfileLogOn_CheckedChanged(object sender, EventArgs e)
-        {           
+        {
             if (chkProfileLogOn.Checked)
             {
                 cmbProfileLogOn.Enabled = true;
@@ -262,7 +281,7 @@ namespace GPDWin2XTUManager
 
         private void cmbProfileLogOn_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (chkProfileLogOn.Checked && cmbProfileLogOn.Enabled )
+            if (chkProfileLogOn.Checked && cmbProfileLogOn.Enabled)
             {
                 AddSelectedProfileInComboboxToLogon();
             }
@@ -274,9 +293,25 @@ namespace GPDWin2XTUManager
             {
                 return;
             }
-            
+
             XTUProfile selectedProfile = Profiles[cmbProfileLogOn.SelectedIndex];
             RegistryManager.AddLogonProfileKey(selectedProfile);
+        }
+
+        private void cmbProfileImage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Enum.TryParse(cmbProfileImage.SelectedItem.ToString(), out ProfileImage image);
+            picIcon.Image = Shared.IMAGE_RESOURCES_DICTIONARY[image];
+
+            int selected = lstOptionsProfiles.SelectedIndex;
+
+            if (selected > 0)
+            {
+                Profiles[selected].ProfileImage = image;
+                //UpdateProfileList();
+                //lstOptionsProfiles.SelectedIndex = selected;
+            }
+
         }
     }
 }
