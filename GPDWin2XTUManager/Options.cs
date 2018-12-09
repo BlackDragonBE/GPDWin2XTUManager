@@ -220,49 +220,25 @@ namespace GPDWin2XTUManager
         private void numMinW_ValueChanged(object sender, EventArgs e)
         {
             int selected = lstOptionsProfiles.SelectedIndex;
-
-            if (selected > 0)
-            {
-                Profiles[selected].MinimumWatt = (double)numMinW.Value;
-                UpdateProfileList();
-                lstOptionsProfiles.SelectedIndex = selected;
-            }
+            Profiles[selected].MinimumWatt = (double)numMinW.Value;
         }
 
         private void numMaxW_ValueChanged(object sender, EventArgs e)
         {
             int selected = lstOptionsProfiles.SelectedIndex;
-
-            if (selected > 0)
-            {
-                Profiles[selected].MaximumWatt = (double)numMaxW.Value;
-                UpdateProfileList();
-                lstOptionsProfiles.SelectedIndex = selected;
-            }
+            Profiles[selected].MaximumWatt = (double)numMaxW.Value;
         }
 
         private void numCPUuv_ValueChanged(object sender, EventArgs e)
         {
             int selected = lstOptionsProfiles.SelectedIndex;
-
-            if (selected > 0)
-            {
-                Profiles[selected].CPUUndervolt = (int)numCPUuv.Value;
-                UpdateProfileList();
-                lstOptionsProfiles.SelectedIndex = selected;
-            }
+            Profiles[selected].CPUUndervolt = (int)numCPUuv.Value;
         }
 
         private void numGPUuv_ValueChanged(object sender, EventArgs e)
         {
             int selected = lstOptionsProfiles.SelectedIndex;
-
-            if (selected > 0)
-            {
-                Profiles[selected].GPUUndervolt = (int)numGPUuv.Value;
-                UpdateProfileList();
-                lstOptionsProfiles.SelectedIndex = selected;
-            }
+            Profiles[selected].GPUUndervolt = (int)numGPUuv.Value;
         }
 
         private void chkProfileLogOn_CheckedChanged(object sender, EventArgs e)
@@ -304,14 +280,7 @@ namespace GPDWin2XTUManager
             picIcon.Image = Shared.IMAGE_RESOURCES_DICTIONARY[image];
 
             int selected = lstOptionsProfiles.SelectedIndex;
-
-            if (selected > 0)
-            {
-                Profiles[selected].ProfileImage = image;
-                //UpdateProfileList();
-                //lstOptionsProfiles.SelectedIndex = selected;
-            }
-
+            Profiles[selected].ProfileImage = image;
         }
     }
 }
