@@ -85,4 +85,5 @@ Keep in mind that this is a free hobby project so I might not be able to resolve
 
 ## Feature Wish List
 
-You tell me! :)
+- Optionally change active power plan as well?
+- You tell me! :)

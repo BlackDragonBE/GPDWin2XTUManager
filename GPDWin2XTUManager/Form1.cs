@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
+using System.Management;
 using System.ServiceProcess;
-using System.Threading;
 using System.Windows.Forms;
 using GPDWin2XTUManager.Properties;
 using GPDWin2XTUManager.UpdateChecks;
@@ -101,9 +100,54 @@ namespace GPDWin2XTUManager
             Shared.PrepareImages();
             FillButtonList();
             LoadProfilesIntoList();
+            CheckIntelDriver();
         }
 
+        /// <summary>
+        /// Checks the currently installed Intel driver version and warns if using a bad performing one.
+        /// </summary>
+        private void CheckIntelDriver()
+        {
+            if (Settings.Default.CheckIntelDriver)
+            {
+                ManagementObjectSearcher mos
+                    = new ManagementObjectSearcher("SELECT * FROM Win32_DisplayConfiguration");
+                string driverVersion = string.Empty;
+                foreach (ManagementObject mo in mos.Get())
+                {
+                    foreach (PropertyData property in mo.Properties)
+                    {
+                        //Console.WriteLine(property.Name + "=" + property.Value); // DEBUG
+                        if (property.Name == "DriverVersion")
+                        {
+                            driverVersion = property.Value.ToString();
+                            Console.WriteLine(driverVersion);
+                            txtInfo.Text += "Intel driver version: " + driverVersion + "\r\n";
 
+                            int lastDriverVersionNumber =
+                                Convert.ToInt32(driverVersion.Split('.')[driverVersion.Split('.').Length - 1]);
+
+                            if (lastDriverVersionNumber > 6286) // DCH driver, bad performance, stutters
+                            {
+                                PrintDriverWarningAndDownloadlink("The Intel Graphics driver you are currently using (" + lastDriverVersionNumber + ") has potential performance issues and can cause stuttering while gaming.");
+                            }
+
+                            if (lastDriverVersionNumber < 4944) // Outdated driver
+                            {
+                                PrintDriverWarningAndDownloadlink("The Intel Graphics driver you are currently using (" + lastDriverVersionNumber + ") is outdated and may potentially affect performance.");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void PrintDriverWarningAndDownloadlink(string warning)
+        {
+            txtInfo.Text += warning + "\r\n";
+            txtInfo.Text += "Recommended version: 6286" + "\r\n";
+            txtInfo.Text += "Download link: https://downloadcenter.intel.com/download/27988/Intel-Graphics-Driver-for-Windows-10" + "\r\n(You can disable this check in the settings)\r\n\r\n";
+        }
 
         private void ReadCurrentValues()
         {
@@ -167,6 +211,7 @@ namespace GPDWin2XTUManager
             _xtuProfiles = JsonConvert.DeserializeObject<List<XTUProfile>>(File.ReadAllText(Shared.SETTINGS_PATH));
             _xtuProfiles[0].ProfileImage = ProfileImage.GPD;
             RefreshButtonInfo();
+            GC.Collect(); // Fixes potential memory leak creaty by JSON deserializing
         }
 
         private void RefreshButtonInfo()

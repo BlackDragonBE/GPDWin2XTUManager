@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Options));
             this.lstOptionsProfiles = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -49,6 +50,8 @@
             this.picIcon = new System.Windows.Forms.PictureBox();
             this.btnDeleteProfile = new System.Windows.Forms.Button();
             this.btnAddProfile = new System.Windows.Forms.Button();
+            this.chkIntelDriver = new System.Windows.Forms.CheckBox();
+            this.tooltipSettings = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.numMinW)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxW)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCPUuv)).BeginInit();
@@ -335,11 +338,28 @@
             this.btnAddProfile.UseVisualStyleBackColor = true;
             this.btnAddProfile.Click += new System.EventHandler(this.btnAddProfile_Click);
             // 
+            // chkIntelDriver
+            // 
+            this.chkIntelDriver.AutoSize = true;
+            this.chkIntelDriver.Checked = true;
+            this.chkIntelDriver.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkIntelDriver.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkIntelDriver.Location = new System.Drawing.Point(17, 349);
+            this.chkIntelDriver.Name = "chkIntelDriver";
+            this.chkIntelDriver.Size = new System.Drawing.Size(370, 24);
+            this.chkIntelDriver.TabIndex = 21;
+            this.chkIntelDriver.Text = "Check Intel Graphics driver at application startup";
+            this.tooltipSettings.SetToolTip(this.chkIntelDriver, "Warn about performance issues when having a bad performing Intel Graphics driver " +
+        "installed.");
+            this.chkIntelDriver.UseVisualStyleBackColor = true;
+            this.chkIntelDriver.CheckedChanged += new System.EventHandler(this.chkIntelDriver_CheckedChanged);
+            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 385);
+            this.Controls.Add(this.chkIntelDriver);
             this.Controls.Add(this.chkProfileLogOn);
             this.Controls.Add(this.cmbProfileLogOn);
             this.Controls.Add(this.btnSettingsOK);
@@ -390,5 +410,7 @@
         private System.Windows.Forms.ComboBox cmbProfileImage;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox picIcon;
+        private System.Windows.Forms.CheckBox chkIntelDriver;
+        private System.Windows.Forms.ToolTip tooltipSettings;
     }
 }

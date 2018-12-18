@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Newtonsoft.Json;
+using GPDWin2XTUManager.Properties;
 
 namespace GPDWin2XTUManager
 {
@@ -27,6 +21,7 @@ namespace GPDWin2XTUManager
             CheckForLogonKey();
             FillIconList();
             lstOptionsProfiles.SelectedIndex = 0;
+            chkIntelDriver.Checked = Settings.Default.CheckIntelDriver;
         }
 
         private void FillIconList()
@@ -281,6 +276,12 @@ namespace GPDWin2XTUManager
 
             int selected = lstOptionsProfiles.SelectedIndex;
             Profiles[selected].ProfileImage = image;
+        }
+
+        private void chkIntelDriver_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.CheckIntelDriver = chkIntelDriver.Checked;
+            Settings.Default.Save();
         }
     }
 }
