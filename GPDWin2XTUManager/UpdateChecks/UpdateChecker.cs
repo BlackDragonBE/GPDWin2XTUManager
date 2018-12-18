@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -24,7 +25,9 @@ namespace GPDWin2XTUManager.UpdateChecks
 
             if (newestRelease != null)
             {
-                var githubNewestVersion = Convert.ToDecimal(newestRelease.tag_name);
+                var githubNewestVersion = Convert.ToDecimal(newestRelease.tag_name, CultureInfo.InvariantCulture);
+
+                System.Windows.Forms.MessageBox.Show(newestRelease.tag_name + " " + githubNewestVersion + " " + _thisVersion);
 
                 if (githubNewestVersion > _thisVersion)
                 {
