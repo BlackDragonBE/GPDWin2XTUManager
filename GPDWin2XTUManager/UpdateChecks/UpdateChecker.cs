@@ -27,7 +27,7 @@ namespace GPDWin2XTUManager.UpdateChecks
             {
                 var githubNewestVersion = Convert.ToDecimal(newestRelease.tag_name, CultureInfo.InvariantCulture);
 
-                System.Windows.Forms.MessageBox.Show(newestRelease.tag_name + " " + githubNewestVersion + " " + _thisVersion);
+                //System.Windows.Forms.MessageBox.Show(newestRelease.tag_name + " " + githubNewestVersion + " " + _thisVersion);
 
                 if (githubNewestVersion > _thisVersion)
                 {

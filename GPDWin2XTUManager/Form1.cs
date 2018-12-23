@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Management;
 using System.ServiceProcess;
+using System.Threading;
 using System.Windows.Forms;
 using GPDWin2XTUManager.Properties;
 using GPDWin2XTUManager.UpdateChecks;
@@ -23,6 +25,7 @@ namespace GPDWin2XTUManager
             InitializeComponent();
             CheckForXTU();
             StartXTUService();
+            LoadProfilesIntoList();
 
             if (args == null)
             {
@@ -63,7 +66,7 @@ namespace GPDWin2XTUManager
 
         private async void MainForm_Load(object sender, EventArgs e)
         {
-            Text += " v" + Shared.VERSION;
+            Text += " v" + Shared.VERSION.ToString(CultureInfo.InvariantCulture);
             ReadCurrentValues();
 
             _newRelease = await UpdateChecker.CheckForUpdates();
@@ -99,7 +102,6 @@ namespace GPDWin2XTUManager
         {
             Shared.PrepareImages();
             FillButtonList();
-            LoadProfilesIntoList();
             CheckIntelDriver();
         }
 
@@ -121,7 +123,7 @@ namespace GPDWin2XTUManager
                         if (property.Name == "DriverVersion")
                         {
                             driverVersion = property.Value.ToString();
-                            Console.WriteLine(driverVersion);
+                            //Console.WriteLine(driverVersion);
                             txtInfo.Text += "Intel driver version: " + driverVersion + "\r\n";
 
                             int lastDriverVersionNumber =
@@ -203,12 +205,13 @@ namespace GPDWin2XTUManager
         {
             _xtuProfiles.Clear();
 
-            if (!File.Exists(Shared.SETTINGS_PATH))
+            if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + "\\" + Shared.SETTINGS_PATH))
             {
+                Console.WriteLine("No settings found. Creating new one...");
                 CreateNewSettings();
             }
 
-            _xtuProfiles = JsonConvert.DeserializeObject<List<XTUProfile>>(File.ReadAllText(Shared.SETTINGS_PATH));
+            _xtuProfiles = JsonConvert.DeserializeObject<List<XTUProfile>>(File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "\\" + Shared.SETTINGS_PATH));
             _xtuProfiles[0].ProfileImage = ProfileImage.GPD;
             RefreshButtonInfo();
             GC.Collect(); // Fixes potential memory leak creaty by JSON deserializing
@@ -263,17 +266,35 @@ namespace GPDWin2XTUManager
 
         private void ApplyXTUProfile(XTUProfile xtuProfile)
         {
-            StartXTUService();
+            string minWResult = "";
+            string maxWResult = "";
+            string cpuUvResult = "";
+            string gpuUvResult = "";
 
-            string minWResult = ExecuteInXTUAndGetOutput("-t -id 48 -v " + xtuProfile.MinimumWatt);
-            string maxWResult = ExecuteInXTUAndGetOutput("-t -id 47 -v " + xtuProfile.MaximumWatt);
-            string cpuUvResult = ExecuteInXTUAndGetOutput("-t -id 34 -v -" + xtuProfile.CPUUndervolt);
-            string gpuUvResult = ExecuteInXTUAndGetOutput("-t -id 100 -v -" + xtuProfile.GPUUndervolt);
+            StartXTUService();
+            // XTU doesn't apply the underclocks reliably, so we need multiple tries
+            int maxTries = 5;
+            int currentTry = 0;
+
+            while (!cpuUvResult.Contains("-" + xtuProfile.CPUUndervolt + "mV") || !gpuUvResult.Contains("-" + xtuProfile.GPUUndervolt + "mV") && currentTry < maxTries)
+            {
+                currentTry++;
+
+                minWResult = ExecuteInXTUAndGetOutput("-t -id 48 -v " + xtuProfile.MinimumWatt);
+                Console.WriteLine(minWResult);
+                maxWResult = ExecuteInXTUAndGetOutput("-t -id 47 -v " + xtuProfile.MaximumWatt);
+                Console.WriteLine(maxWResult);
+                cpuUvResult = ExecuteInXTUAndGetOutput("-t -id 34 -v -" + xtuProfile.CPUUndervolt);
+                Console.WriteLine(cpuUvResult);
+                gpuUvResult = ExecuteInXTUAndGetOutput("-t -id 100 -v -" + xtuProfile.GPUUndervolt);
+                Console.WriteLine(gpuUvResult);
+            }
 
             if (minWResult.Contains("Successful") && maxWResult.Contains("Successful") && cpuUvResult.Contains("Successful") && gpuUvResult.Contains("Successful"))
             {
-                txtInfo.Text = "Applied " + xtuProfile.Name + " profile succesfully!";
+                txtInfo.Text = "Applied " + xtuProfile.Name + " profile succesfully!\r\n";
                 Console.WriteLine("Applied " + xtuProfile.Name + " profile succesfully!");
+                ReadCurrentValues();
             }
             else
             {
