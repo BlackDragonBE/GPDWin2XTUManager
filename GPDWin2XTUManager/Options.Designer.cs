@@ -42,14 +42,14 @@
             this.numGPUuv = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cmbProfileImage = new System.Windows.Forms.ComboBox();
-            this.cmbProfileLogOn = new System.Windows.Forms.ComboBox();
-            this.chkProfileLogOn = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.btnSettingsOK = new System.Windows.Forms.Button();
             this.picIcon = new System.Windows.Forms.PictureBox();
+            this.cmbProfileImage = new System.Windows.Forms.ComboBox();
             this.btnDeleteProfile = new System.Windows.Forms.Button();
             this.btnAddProfile = new System.Windows.Forms.Button();
+            this.cmbProfileLogOn = new System.Windows.Forms.ComboBox();
+            this.chkProfileLogOn = new System.Windows.Forms.CheckBox();
+            this.btnSettingsOK = new System.Windows.Forms.Button();
             this.chkIntelDriver = new System.Windows.Forms.CheckBox();
             this.tooltipSettings = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.numMinW)).BeginInit();
@@ -246,6 +246,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Profiles";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(188, 214);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(40, 20);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "Icon";
+            // 
+            // picIcon
+            // 
+            this.picIcon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picIcon.Location = new System.Drawing.Point(511, 189);
+            this.picIcon.Name = "picIcon";
+            this.picIcon.Size = new System.Drawing.Size(50, 50);
+            this.picIcon.TabIndex = 19;
+            this.picIcon.TabStop = false;
+            // 
             // cmbProfileImage
             // 
             this.cmbProfileImage.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
@@ -257,6 +276,28 @@
             this.cmbProfileImage.Size = new System.Drawing.Size(121, 28);
             this.cmbProfileImage.TabIndex = 18;
             this.cmbProfileImage.SelectedIndexChanged += new System.EventHandler(this.cmbProfileImage_SelectedIndexChanged);
+            // 
+            // btnDeleteProfile
+            // 
+            this.btnDeleteProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteProfile.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteProfile.Image")));
+            this.btnDeleteProfile.Location = new System.Drawing.Point(108, 232);
+            this.btnDeleteProfile.Name = "btnDeleteProfile";
+            this.btnDeleteProfile.Size = new System.Drawing.Size(74, 59);
+            this.btnDeleteProfile.TabIndex = 8;
+            this.btnDeleteProfile.UseVisualStyleBackColor = true;
+            this.btnDeleteProfile.Click += new System.EventHandler(this.btnDeleteProfile_Click);
+            // 
+            // btnAddProfile
+            // 
+            this.btnAddProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddProfile.Image = global::GPDWin2XTUManager.Properties.Resources.Plus;
+            this.btnAddProfile.Location = new System.Drawing.Point(9, 232);
+            this.btnAddProfile.Name = "btnAddProfile";
+            this.btnAddProfile.Size = new System.Drawing.Size(74, 59);
+            this.btnAddProfile.TabIndex = 7;
+            this.btnAddProfile.UseVisualStyleBackColor = true;
+            this.btnAddProfile.Click += new System.EventHandler(this.btnAddProfile_Click);
             // 
             // cmbProfileLogOn
             // 
@@ -283,60 +324,19 @@
             this.chkProfileLogOn.UseVisualStyleBackColor = true;
             this.chkProfileLogOn.CheckedChanged += new System.EventHandler(this.chkProfileLogOn_CheckedChanged);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(188, 214);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 20);
-            this.label6.TabIndex = 20;
-            this.label6.Text = "Icon";
-            // 
             // btnSettingsOK
             // 
             this.btnSettingsOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSettingsOK.Image = global::GPDWin2XTUManager.Properties.Resources.OK;
             this.btnSettingsOK.Location = new System.Drawing.Point(426, 308);
             this.btnSettingsOK.Name = "btnSettingsOK";
-            this.btnSettingsOK.Size = new System.Drawing.Size(146, 65);
+            this.btnSettingsOK.Size = new System.Drawing.Size(146, 85);
             this.btnSettingsOK.TabIndex = 6;
             this.btnSettingsOK.Text = "OK";
             this.btnSettingsOK.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSettingsOK.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSettingsOK.UseVisualStyleBackColor = true;
             this.btnSettingsOK.Click += new System.EventHandler(this.btnSettingsOK_Click);
-            // 
-            // picIcon
-            // 
-            this.picIcon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picIcon.Location = new System.Drawing.Point(511, 189);
-            this.picIcon.Name = "picIcon";
-            this.picIcon.Size = new System.Drawing.Size(50, 50);
-            this.picIcon.TabIndex = 19;
-            this.picIcon.TabStop = false;
-            // 
-            // btnDeleteProfile
-            // 
-            this.btnDeleteProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteProfile.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteProfile.Image")));
-            this.btnDeleteProfile.Location = new System.Drawing.Point(108, 232);
-            this.btnDeleteProfile.Name = "btnDeleteProfile";
-            this.btnDeleteProfile.Size = new System.Drawing.Size(74, 59);
-            this.btnDeleteProfile.TabIndex = 8;
-            this.btnDeleteProfile.UseVisualStyleBackColor = true;
-            this.btnDeleteProfile.Click += new System.EventHandler(this.btnDeleteProfile_Click);
-            // 
-            // btnAddProfile
-            // 
-            this.btnAddProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddProfile.Image = global::GPDWin2XTUManager.Properties.Resources.Plus;
-            this.btnAddProfile.Location = new System.Drawing.Point(9, 232);
-            this.btnAddProfile.Name = "btnAddProfile";
-            this.btnAddProfile.Size = new System.Drawing.Size(74, 59);
-            this.btnAddProfile.TabIndex = 7;
-            this.btnAddProfile.UseVisualStyleBackColor = true;
-            this.btnAddProfile.Click += new System.EventHandler(this.btnAddProfile_Click);
             // 
             // chkIntelDriver
             // 
@@ -346,9 +346,9 @@
             this.chkIntelDriver.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkIntelDriver.Location = new System.Drawing.Point(17, 349);
             this.chkIntelDriver.Name = "chkIntelDriver";
-            this.chkIntelDriver.Size = new System.Drawing.Size(370, 24);
+            this.chkIntelDriver.Size = new System.Drawing.Size(370, 44);
             this.chkIntelDriver.TabIndex = 21;
-            this.chkIntelDriver.Text = "Check Intel Graphics driver at application startup";
+            this.chkIntelDriver.Text = "Check Intel Graphics driver at application startup\r\n(EXPERIMENTAL)";
             this.tooltipSettings.SetToolTip(this.chkIntelDriver, "Warn about performance issues when having a bad performing Intel Graphics driver " +
         "installed.");
             this.chkIntelDriver.UseVisualStyleBackColor = true;
@@ -358,7 +358,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 385);
+            this.ClientSize = new System.Drawing.Size(584, 399);
             this.Controls.Add(this.chkIntelDriver);
             this.Controls.Add(this.chkProfileLogOn);
             this.Controls.Add(this.cmbProfileLogOn);
@@ -369,7 +369,7 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(600, 450);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(600, 320);
+            this.MinimumSize = new System.Drawing.Size(600, 438);
             this.Name = "Options";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

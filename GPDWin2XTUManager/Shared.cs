@@ -17,7 +17,7 @@ namespace GPDWin2XTUManager
         public static readonly decimal VERSION = 1.06m;
         public static readonly string SETTINGS_PATH = "Settings.json";
         public static readonly string RUN_AT_LOGON_PATH = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
-        public static readonly string APP_REG_KEY_VALUE = "GPDWin2XTUManager";
+        public static readonly string APP_NAME_VALUE = "GPDWin2XTUManager";
         public static readonly string XTU_PATH = @"C:\Program Files (x86)\Intel\Intel(R) Extreme Tuning Utility\Client\xtucli.exe";
         public static Dictionary<ProfileImage, Bitmap> IMAGE_RESOURCES_DICTIONARY = new Dictionary<ProfileImage, Bitmap>();
 

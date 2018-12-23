@@ -18,10 +18,19 @@ namespace GPDWin2XTUManager
         private void Options_Load(object sender, EventArgs e)
         {
             UpdateProfileList();
-            CheckForLogonKey();
+            RemoveRegistryKey();
+            CheckForLogonTask();
             FillIconList();
             lstOptionsProfiles.SelectedIndex = 0;
             chkIntelDriver.Checked = Settings.Default.CheckIntelDriver;
+        }
+
+        /// <summary>
+        /// Removes existing reg key left by previous versions
+        /// </summary>
+        private void RemoveRegistryKey()
+        {
+            RegistryManager.ClearLogonProfileKey();
         }
 
         private void FillIconList()
@@ -29,22 +38,22 @@ namespace GPDWin2XTUManager
             cmbProfileImage.Items.AddRange(Enum.GetNames(typeof(ProfileImage)));
         }
 
-        private void CheckForLogonKey()
+        private void CheckForLogonTask()
         {
-            if (RegistryManager.LogonRegistryKeyExists())
+            if (StartupTaskManager.TaskExists())
             {
-                // A logon key is defined
+                // A logon task is defined
 
-                if (Profiles.Exists(pr => pr.Name == RegistryManager.GetLogonProfileKeyValue()))
+                if (Profiles.Exists(pr => pr.Name == StartupTaskManager.GetTaskParameter()))
                 {
                     // The logon profile still exists
                     chkProfileLogOn.Checked = true;
-                    cmbProfileLogOn.SelectedItem = Profiles.Find(pr => pr.Name == RegistryManager.GetLogonProfileKeyValue());
+                    cmbProfileLogOn.SelectedItem = Profiles.Find(pr => pr.Name == StartupTaskManager.GetTaskParameter());
                 }
                 else
                 {
-                    // The logon profile doesn't exist anymore, clear the key
-                    RegistryManager.ClearLogonProfileKey();
+                    // The logon profile doesn't exist anymore, delete the task
+                    StartupTaskManager.DeleteTask();
                     chkProfileLogOn.Checked = false;
                     cmbProfileLogOn.Enabled = false;
                     cmbProfileLogOn.SelectedIndex = 0;
@@ -52,7 +61,7 @@ namespace GPDWin2XTUManager
             }
             else
             {
-                // No logon key defined
+                // No logon task defined
                 chkProfileLogOn.Checked = false;
                 cmbProfileLogOn.Enabled = false;
                 cmbProfileLogOn.SelectedIndex = 0;
@@ -151,7 +160,7 @@ namespace GPDWin2XTUManager
 
                 Profiles.Add(newProfile);
                 UpdateProfileList();
-                CheckForLogonKey();
+                CheckForLogonTask();
                 lstOptionsProfiles.SelectedIndex = lstOptionsProfiles.Items.Count - 1;
             }
         }
@@ -170,7 +179,7 @@ namespace GPDWin2XTUManager
                     Profiles.RemoveAt(lstOptionsProfiles.SelectedIndex);
                     UpdateProfileList();
                     lstOptionsProfiles.SelectedIndex = 0;
-                    CheckForLogonKey();
+                    CheckForLogonTask();
                 }
             }
             else
@@ -193,7 +202,7 @@ namespace GPDWin2XTUManager
             // Check for logon key if enabled
             if (chkProfileLogOn.Checked)
             {
-                CheckForLogonKey();
+                CheckForLogonTask();
             }
 
             if (selectedProfileIndex > 0)
@@ -246,7 +255,7 @@ namespace GPDWin2XTUManager
             else
             {
                 cmbProfileLogOn.Enabled = false;
-                RegistryManager.ClearLogonProfileKey();
+                StartupTaskManager.DeleteTask();
             }
         }
 
@@ -266,7 +275,7 @@ namespace GPDWin2XTUManager
             }
 
             XTUProfile selectedProfile = Profiles[cmbProfileLogOn.SelectedIndex];
-            RegistryManager.AddLogonProfileKey(selectedProfile);
+            StartupTaskManager.CreateTask(selectedProfile.Name);
         }
 
         private void cmbProfileImage_SelectedIndexChanged(object sender, EventArgs e)
