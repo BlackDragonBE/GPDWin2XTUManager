@@ -110,38 +110,22 @@ namespace GPDWin2XTUManager
         /// </summary>
         private void CheckIntelDriver()
         {
-            if (Settings.Default.CheckIntelDriver)
+            ManagementObjectSearcher mos = new ManagementObjectSearcher("SELECT * FROM Win32_DisplayConfiguration");
+            string driverVersion = string.Empty;
+            foreach (ManagementObject mo in mos.Get())
             {
-                ManagementObjectSearcher mos
-                    = new ManagementObjectSearcher("SELECT * FROM Win32_DisplayConfiguration");
-                string driverVersion = string.Empty;
-                foreach (ManagementObject mo in mos.Get())
+                foreach (PropertyData property in mo.Properties)
                 {
-                    foreach (PropertyData property in mo.Properties)
+                    //Console.WriteLine(property.Name + "=" + property.Value); // DEBUG
+                    if (property.Name == "DriverVersion")
                     {
-                        //Console.WriteLine(property.Name + "=" + property.Value); // DEBUG
-                        if (property.Name == "DriverVersion")
-                        {
-                            driverVersion = property.Value.ToString();
-                            //Console.WriteLine(driverVersion);
-                            txtInfo.Text += "Intel driver version: " + driverVersion + "\r\n";
-
-                            int lastDriverVersionNumber =
-                                Convert.ToInt32(driverVersion.Split('.')[driverVersion.Split('.').Length - 1]);
-
-                            if (lastDriverVersionNumber > 6286) // DCH driver, bad performance, stutters
-                            {
-                                PrintDriverWarningAndDownloadlink("The Intel Graphics driver you are currently using (" + lastDriverVersionNumber + ") has potential performance issues and can cause stuttering while gaming.");
-                            }
-
-                            if (lastDriverVersionNumber < 4944) // Outdated driver
-                            {
-                                PrintDriverWarningAndDownloadlink("The Intel Graphics driver you are currently using (" + lastDriverVersionNumber + ") is outdated and may potentially affect performance.");
-                            }
-                        }
+                        driverVersion = property.Value.ToString();
+                        //Console.WriteLine(driverVersion);
+                        txtInfo.Text += "Intel driver version: " + driverVersion + "\r\n";
                     }
                 }
             }
+
         }
 
         private void PrintDriverWarningAndDownloadlink(string warning)
@@ -276,7 +260,7 @@ namespace GPDWin2XTUManager
             int maxTries = 5;
             int currentTry = 0;
 
-            while (!cpuUvResult.Contains("-" + xtuProfile.CPUUndervolt + "mV") || !gpuUvResult.Contains("-" + xtuProfile.GPUUndervolt + "mV") && currentTry < maxTries)
+            while (currentTry < maxTries && !cpuUvResult.Contains(xtuProfile.CPUUndervolt + "mV") || !gpuUvResult.Contains(xtuProfile.GPUUndervolt + "mV"))
             {
                 currentTry++;
 
@@ -288,6 +272,9 @@ namespace GPDWin2XTUManager
                 Console.WriteLine(cpuUvResult);
                 gpuUvResult = ExecuteInXTUAndGetOutput("-t -id 100 -v -" + xtuProfile.GPUUndervolt);
                 Console.WriteLine(gpuUvResult);
+
+                // turbo boost power max
+                ExecuteInXTUAndGetOutput("-t -id 66 -v " + 96);
             }
 
             if (minWResult.Contains("Successful") && maxWResult.Contains("Successful") && cpuUvResult.Contains("Successful") && gpuUvResult.Contains("Successful"))

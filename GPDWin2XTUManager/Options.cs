@@ -22,8 +22,7 @@ namespace GPDWin2XTUManager
             CheckForLogonTask();
             FillIconList();
             lstOptionsProfiles.SelectedIndex = 0;
-            chkIntelDriver.Checked = Settings.Default.CheckIntelDriver;
-        }
+    }
 
         /// <summary>
         /// Removes existing reg key left by previous versions
@@ -285,12 +284,6 @@ namespace GPDWin2XTUManager
 
             int selected = lstOptionsProfiles.SelectedIndex;
             Profiles[selected].ProfileImage = image;
-        }
-
-        private void chkIntelDriver_CheckedChanged(object sender, EventArgs e)
-        {
-            Settings.Default.CheckIntelDriver = chkIntelDriver.Checked;
-            Settings.Default.Save();
         }
     }
 }

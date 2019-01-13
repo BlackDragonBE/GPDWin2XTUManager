@@ -128,7 +128,7 @@
             0,
             0});
             this.numMinW.Minimum = new decimal(new int[] {
-            2,
+            1,
             0,
             0,
             0});
@@ -158,7 +158,7 @@
             0,
             0});
             this.numMaxW.Minimum = new decimal(new int[] {
-            2,
+            1,
             0,
             0,
             0});
@@ -340,19 +340,10 @@
             // 
             // chkIntelDriver
             // 
-            this.chkIntelDriver.AutoSize = true;
-            this.chkIntelDriver.Checked = true;
-            this.chkIntelDriver.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkIntelDriver.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkIntelDriver.Location = new System.Drawing.Point(17, 349);
+            this.chkIntelDriver.Location = new System.Drawing.Point(0, 0);
             this.chkIntelDriver.Name = "chkIntelDriver";
-            this.chkIntelDriver.Size = new System.Drawing.Size(370, 44);
-            this.chkIntelDriver.TabIndex = 21;
-            this.chkIntelDriver.Text = "Check Intel Graphics driver at application startup\r\n(EXPERIMENTAL)";
-            this.tooltipSettings.SetToolTip(this.chkIntelDriver, "Warn about performance issues when having a bad performing Intel Graphics driver " +
-        "installed.");
-            this.chkIntelDriver.UseVisualStyleBackColor = true;
-            this.chkIntelDriver.CheckedChanged += new System.EventHandler(this.chkIntelDriver_CheckedChanged);
+            this.chkIntelDriver.Size = new System.Drawing.Size(104, 24);
+            this.chkIntelDriver.TabIndex = 0;
             // 
             // Options
             // 
