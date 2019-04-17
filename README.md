@@ -59,7 +59,7 @@ The app will also prompt you to download XTU if it's not installed yet.
 Q: Does XTU need to be constantly running in the background while using this?  
 A: Nope, the application starts and stops the XTU service by itself. The XTU window doesn't even need to be opened as only the CLI (command line interface) is used.
 
-Q: I installed the latest version of Intel Extreme Tuning Utility, but the app still says XTU couldn't be found. What gives?
+Q: I installed the latest version of Intel Extreme Tuning Utility, but the app still says XTU couldn't be found. What gives?  
 A: Somewhere since April 2019, Intel decided not to include the CLI executable anymore with its setup. A workaround for this is to [download the older version included in the repo](https://github.com/BlackDragonBE/GPDWin2XTUManager/blob/master/XTU_Installer/XTU-Setup-6.4.1.25.exe), removing the current XTU you have installed and installing the one I have provided.
 
 Q: How can I update the application?  
