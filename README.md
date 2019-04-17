@@ -55,9 +55,12 @@ A: Sure! You can donate [here](https://www.paypal.me/blackdragonbe). Thanks! <3
 Q: Do I still need to download and install the Intel Extreme Tuning Utility?  
 A: Yes! This application "talks" with XTU in order to apply the settings. Download it here: https://downloadcenter.intel.com/download/24075/Intel-Extreme-Tuning-Utility-Intel-XTU-
 The app will also prompt you to download XTU if it's not installed yet.  
-  
+
 Q: Does XTU need to be constantly running in the background while using this?  
 A: Nope, the application starts and stops the XTU service by itself. The XTU window doesn't even need to be opened as only the CLI (command line interface) is used.
+
+Q: I installed the latest version of Intel Extreme Tuning Utility, but the app still says XTU couldn't be found. What gives?
+A: Somewhere since April 2019, Intel decided not to include the CLI executable anymore with its setup. A workaround for this is to [download the older version included in the repo](https://github.com/BlackDragonBE/GPDWin2XTUManager/blob/master/XTU_Installer/XTU-Setup-6.4.1.25.exe), removing the current XTU you have installed and installing the one I have provided.
 
 Q: How can I update the application?  
 A: Simply download the [newest release](https://github.com/BlackDragonBE/GPDWin2XTUManager/releases), unpack it and replace the contents of the folder with that of the older version. When coming from 1.02 or older, make sure none of your profile names contain spaces before attempting to load them at logon.  
