@@ -1,9 +1,5 @@
 ﻿using Microsoft.Win32.TaskScheduler;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Task = Microsoft.Win32.TaskScheduler.Task;
 
@@ -45,16 +41,16 @@ namespace GPDWin2XTUManager
                 TaskDefinition td = ts.NewTask();
                 td.RegistrationInfo.Description = Shared.APP_NAME_VALUE;
                 td.Principal.LogonType = TaskLogonType.InteractiveToken;
-
+                td.Principal.RunLevel = TaskRunLevel.Highest;
+                td.Principal.UserId = "SYSTEM";
 
                 // Add a trigger that will fire the task at logon
-                td.Triggers.Add(new LogonTrigger());
+                td.Triggers.Add(new LogonTrigger() { Delay = new TimeSpan(0, 0, 30) });
 
-                // Add an action that will launch Notepad whenever the trigger fires
-                td.Actions.Add(new ExecAction(Application.ExecutablePath, profileName , null));
+                // Add an action that will launch the app whenever the trigger fires
+                td.Actions.Add(new ExecAction(Application.ExecutablePath, profileName, null));
 
                 td.Settings.DisallowStartIfOnBatteries = false;
-                td.Principal.RunLevel = TaskRunLevel.Highest;
 
                 // Register the task in the root folder
                 string taskName = Shared.APP_NAME_VALUE;

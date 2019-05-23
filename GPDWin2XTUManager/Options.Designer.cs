@@ -50,7 +50,6 @@
             this.cmbProfileLogOn = new System.Windows.Forms.ComboBox();
             this.chkProfileLogOn = new System.Windows.Forms.CheckBox();
             this.btnSettingsOK = new System.Windows.Forms.Button();
-            this.chkIntelDriver = new System.Windows.Forms.CheckBox();
             this.tooltipSettings = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.numMinW)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxW)).BeginInit();
@@ -338,19 +337,11 @@
             this.btnSettingsOK.UseVisualStyleBackColor = true;
             this.btnSettingsOK.Click += new System.EventHandler(this.btnSettingsOK_Click);
             // 
-            // chkIntelDriver
-            // 
-            this.chkIntelDriver.Location = new System.Drawing.Point(0, 0);
-            this.chkIntelDriver.Name = "chkIntelDriver";
-            this.chkIntelDriver.Size = new System.Drawing.Size(104, 24);
-            this.chkIntelDriver.TabIndex = 0;
-            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 399);
-            this.Controls.Add(this.chkIntelDriver);
             this.Controls.Add(this.chkProfileLogOn);
             this.Controls.Add(this.cmbProfileLogOn);
             this.Controls.Add(this.btnSettingsOK);
@@ -401,7 +392,6 @@
         private System.Windows.Forms.ComboBox cmbProfileImage;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox picIcon;
-        private System.Windows.Forms.CheckBox chkIntelDriver;
         private System.Windows.Forms.ToolTip tooltipSettings;
     }
 }

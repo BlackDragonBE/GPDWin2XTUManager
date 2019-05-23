@@ -1,21 +1,20 @@
-﻿using System;
+﻿using GPDWin2XTUManager.Properties;
+using GPDWin2XTUManager.UpdateChecks;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Management;
 using System.ServiceProcess;
-using System.Threading;
 using System.Windows.Forms;
-using GPDWin2XTUManager.Properties;
-using GPDWin2XTUManager.UpdateChecks;
-using Newtonsoft.Json;
 
 namespace GPDWin2XTUManager
 {
     public partial class MainForm : Form
     {
-        private List<Button> _profileButtons = new List<Button>();
+        private readonly List<Button> _profileButtons = new List<Button>();
         private List<XTUProfile> _xtuProfiles = new List<XTUProfile>();
 
         private GithubRelease _newRelease;
@@ -59,9 +58,7 @@ namespace GPDWin2XTUManager
                 {
                     MessageBox.Show("Incorrect number of arguments. Expected 4, but was given " + args.Length);
                 }
-
             }
-
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
@@ -69,14 +66,13 @@ namespace GPDWin2XTUManager
             Text += " v" + Shared.VERSION.ToString(CultureInfo.InvariantCulture);
             ReadCurrentValues();
 
-            _newRelease = await UpdateChecker.CheckForUpdates();
+            _newRelease = await UpdateChecker.CheckForUpdates().ConfigureAwait(true);
 
             if (_newRelease != null)
             {
                 btnUpdateAvailable.Visible = true;
                 btnUpdateAvailable.Text = "v" + _newRelease.tag_name + " is available!\r\nClick for changelog.";
             }
-
         }
 
         private void CheckForXTU()
@@ -90,7 +86,6 @@ namespace GPDWin2XTUManager
                 }
 
                 Environment.Exit(0);
-
             }
             else
             {
@@ -111,7 +106,6 @@ namespace GPDWin2XTUManager
         private void CheckIntelDriver()
         {
             ManagementObjectSearcher mos = new ManagementObjectSearcher("SELECT * FROM Win32_DisplayConfiguration");
-            string driverVersion = string.Empty;
             foreach (ManagementObject mo in mos.Get())
             {
                 foreach (PropertyData property in mo.Properties)
@@ -119,20 +113,19 @@ namespace GPDWin2XTUManager
                     //Console.WriteLine(property.Name + "=" + property.Value); // DEBUG
                     if (property.Name == "DriverVersion")
                     {
-                        driverVersion = property.Value.ToString();
+                        string driverVersion = property.Value.ToString();
                         //Console.WriteLine(driverVersion);
                         txtInfo.Text += "Intel driver version: " + driverVersion + "\r\n";
                     }
                 }
             }
-
         }
 
         private void PrintDriverWarningAndDownloadlink(string warning)
         {
             txtInfo.Text += warning + "\r\n";
-            txtInfo.Text += "Recommended version: 6286" + "\r\n";
-            txtInfo.Text += "Download link: https://downloadcenter.intel.com/download/27988/Intel-Graphics-Driver-for-Windows-10" + "\r\n(You can disable this check in the settings)\r\n\r\n";
+            txtInfo.Text += "Recommended version: 6286\r\n";
+            txtInfo.Text += "Download link: https://downloadcenter.intel.com/download/27988/Intel-Graphics-Driver-for-Windows-10\r\n(You can disable this check in the settings)\r\n\r\n";
         }
 
         private void ReadCurrentValues()
@@ -144,25 +137,25 @@ namespace GPDWin2XTUManager
                 string cpuUV = ExecuteInXTUAndGetOutput("-t -id 34").Trim();
                 string gpuUV = ExecuteInXTUAndGetOutput("-t -id 100").Trim();
 
-                txtInfo.Text += "Current values: \r\n" + "Min W: \r\n" + minW + "\r\nMax W: \r\n" + maxW + "\r\nCPU UV: \r\n" + cpuUV + "\r\nGPU UV: \r\n" + gpuUV;
+                txtInfo.Text += "Current values: \r\nMin W: \r\n" + minW + "\r\nMax W: \r\n" + maxW + "\r\nCPU UV: \r\n" + cpuUV + "\r\nGPU UV: \r\n" + gpuUV;
             }
             catch
             {
                 txtInfo.Text += "Couldn't read current values.";
             }
-
-
         }
 
         private string ExecuteInXTUAndGetOutput(string command)
         {
             string output = string.Empty;
 
-            ProcessStartInfo processStartInfo = new ProcessStartInfo(Shared.XTU_PATH, command);
-            processStartInfo.RedirectStandardOutput = true;
-            processStartInfo.RedirectStandardError = true;
-            processStartInfo.WindowStyle = ProcessWindowStyle.Normal;
-            processStartInfo.UseShellExecute = false;
+            ProcessStartInfo processStartInfo = new ProcessStartInfo(Shared.XTU_PATH, command)
+            {
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                WindowStyle = ProcessWindowStyle.Normal,
+                UseShellExecute = false
+            };
 
             Process process = Process.Start(processStartInfo);
             using (StreamReader streamReader = process.StandardOutput)
@@ -218,8 +211,6 @@ namespace GPDWin2XTUManager
                     _profileButtons[i].Text = "Create profile...";
                     _profileButtons[i].Image = Resources.Plus;
                 }
-
-
             }
         }
 
@@ -377,8 +368,10 @@ namespace GPDWin2XTUManager
 
         private void OpenSettings()
         {
-            Options frmOptions = new Options();
-            frmOptions.Profiles = _xtuProfiles;
+            Options frmOptions = new Options
+            {
+                Profiles = _xtuProfiles
+            };
             frmOptions.FormClosed += FrmOptionsOnFormClosed;
             frmOptions.ShowDialog();
         }

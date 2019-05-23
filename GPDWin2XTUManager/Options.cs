@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using GPDWin2XTUManager.Properties;
 
 namespace GPDWin2XTUManager
 {
@@ -22,7 +21,7 @@ namespace GPDWin2XTUManager
             CheckForLogonTask();
             FillIconList();
             lstOptionsProfiles.SelectedIndex = 0;
-    }
+        }
 
         /// <summary>
         /// Removes existing reg key left by previous versions
@@ -78,14 +77,7 @@ namespace GPDWin2XTUManager
             cmbProfileLogOn.Items.Clear();
             cmbProfileLogOn.Items.AddRange(Profiles.ToArray());
 
-            if (Profiles.Count > 7)
-            {
-                btnAddProfile.Enabled = false;
-            }
-            else
-            {
-                btnAddProfile.Enabled = true;
-            }
+            btnAddProfile.Enabled = Profiles.Count <= 7;
         }
 
         private void btnSettingsOK_Click(object sender, EventArgs e)
@@ -212,7 +204,6 @@ namespace GPDWin2XTUManager
                 cmbProfileLogOn.SelectedIndex = selectedLogonIndex;
                 txtName.SelectionStart = selectedTextIndex;
             }
-
         }
 
         private void Options_FormClosing(object sender, FormClosingEventArgs e)

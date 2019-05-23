@@ -21,7 +21,7 @@ namespace GPDWin2XTUManager.UpdateChecks
         {
             _thisVersion = Shared.VERSION;
 
-            GithubRelease newestRelease = await GetNewestReleaseInfo();
+            GithubRelease newestRelease = await GetNewestReleaseInfo().ConfigureAwait(false);
 
             if (newestRelease != null)
             {
@@ -67,7 +67,7 @@ namespace GPDWin2XTUManager.UpdateChecks
                 {
                     // Update check failed, ignore
                 }
-            });
+            }).ConfigureAwait(false);
 
             return release;
         }
