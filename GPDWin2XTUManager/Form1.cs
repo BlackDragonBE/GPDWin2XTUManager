@@ -22,7 +22,7 @@ namespace GPDWin2XTUManager
         public MainForm(string[] args = null)
         {
             InitializeComponent();
-            CheckForXTU();
+            CheckForXTUAsync();
             StartXTUService();
             LoadProfilesIntoList();
 
@@ -75,14 +75,14 @@ namespace GPDWin2XTUManager
             }
         }
 
-        private void CheckForXTU()
+        private async void CheckForXTUAsync()
         {
             if (!File.Exists(Shared.XTU_PATH))
             {
-                if (MessageBox.Show("The Intel Extreme Tuning Utility couldn't be found. Open download page?",
+                if (MessageBox.Show("The Intel Extreme Tuning Utility couldn't be found. If you did install XTU, read the FAQ on github about the latest version of XTU. Open download page?",
                         "Unable to find XTU", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
                 {
-                    Process.Start("https://downloadcenter.intel.com/download/24075/Intel-Extreme-Tuning-Utility-Intel-XTU-");
+                    Process.Start("https://github.com/BlackDragonBE/GPDWin2XTUManager/raw/master/XTU_Installer/XTU-Setup-6.4.1.25.exe");
                 }
 
                 Environment.Exit(0);

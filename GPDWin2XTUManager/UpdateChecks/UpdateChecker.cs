@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System;
 using System.Globalization;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace GPDWin2XTUManager.UpdateChecks
 {
@@ -21,7 +18,7 @@ namespace GPDWin2XTUManager.UpdateChecks
         {
             _thisVersion = Shared.VERSION;
 
-            GithubRelease newestRelease = await GetNewestReleaseInfo().ConfigureAwait(false);
+            GithubRelease newestRelease = await GetNewestReleaseInfo().ConfigureAwait(true);
 
             if (newestRelease != null)
             {
