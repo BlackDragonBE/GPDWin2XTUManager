@@ -62,7 +62,8 @@ namespace GPDWin2XTUManager.UpdateChecks
                 }
                 catch (Exception e)
                 {
-                    // Update check failed, ignore
+                    // Update check failed
+                    Console.WriteLine("Update check failed: " + e.Message);
                 }
             }).ConfigureAwait(false);
 

@@ -113,7 +113,7 @@
             // 
             // numMinW
             // 
-            this.numMinW.DecimalPlaces = 1;
+            this.numMinW.DecimalPlaces = 2;
             this.numMinW.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numMinW.Increment = new decimal(new int[] {
             5,
@@ -143,7 +143,7 @@
             // 
             // numMaxW
             // 
-            this.numMaxW.DecimalPlaces = 1;
+            this.numMaxW.DecimalPlaces = 2;
             this.numMaxW.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numMaxW.Increment = new decimal(new int[] {
             5,

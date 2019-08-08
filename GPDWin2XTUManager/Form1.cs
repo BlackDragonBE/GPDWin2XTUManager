@@ -22,7 +22,7 @@ namespace GPDWin2XTUManager
         public MainForm(string[] args = null)
         {
             InitializeComponent();
-            CheckForXTUAsync();
+            CheckForXTU();
             StartXTUService();
             LoadProfilesIntoList();
 
@@ -75,7 +75,7 @@ namespace GPDWin2XTUManager
             }
         }
 
-        private async void CheckForXTUAsync()
+        private void CheckForXTU()
         {
             if (!File.Exists(Shared.XTU_PATH))
             {
