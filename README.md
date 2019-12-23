@@ -45,7 +45,7 @@ Since version 1.01 you can also just pass the profile name like this for example
 
     C:\XTUManager\GPDWin2XTUManager.exe PERFORMANCE
 
-These will apply the settings and immediately close the application afterwards. This is ideal for applying the same settings each time at the system startup. Just make sure the settings are stable first or you'll have to boot into safe mode to undo the task. A future version will include a way to do this for you.
+These will apply the settings and immediately close the application afterwards. This is ideal for applying the same settings each time at the system startup. Just make sure the settings are stable first or you'll have to boot into safe mode to undo the task. You can also set up a task like this automatically in the Options screen.
 
 ## FAQ
 
