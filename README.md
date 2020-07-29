@@ -1,3 +1,5 @@
+## NOTE: The active development on this application has stopped. It's impossible for me to keep up with the newest GPD hardware without being sponsored. You can fork this project and adjust it to your needs, but I won't be able to give any support. 
+
 # GPD Win 2 XTU Manager
 
 GPD Win 2 XTU Manager is an application developed by [@BlackDragonBE](https://twitter.com/BlackDragonBE) to make applying XTU (Intel Extreme Tuning Utility) profiles on the GPD Win 2 as easy and fast as possible. This allows you to change the TDP and CPU and GPU undervolts with just a single click!
