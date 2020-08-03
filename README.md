@@ -54,7 +54,7 @@ These will apply the settings and immediately close the application afterwards. 
 Q: I love this! Can I buy you a beer/coffee?  
 A: Sure! You can donate [here](https://www.paypal.me/blackdragonbe). Thanks! <3
 
-Q: The app freezes whenever I try to apply a profile, why?
+Q: The app freezes whenever I try to apply a profile, why?  
 A: This app only works if you have a GPD Win 2 with a M3-7Y30 CPU. The newer models have a 8100Y CPU and are not compatible. I do not have a test device to make the necessary changes unfortunately.
 
 Q: Do I still need to download and install the Intel Extreme Tuning Utility?  
