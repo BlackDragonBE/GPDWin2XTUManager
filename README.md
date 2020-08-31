@@ -51,38 +51,38 @@ These will apply the settings and immediately close the application afterwards. 
 
 ## FAQ
 
-Q: I love this! Can I buy you a beer/coffee?  
+Q1: I love this! Can I buy you a beer/coffee?  
 A: Sure! You can donate [here](https://www.paypal.me/blackdragonbe). Thanks! <3
 
-Q: The app freezes whenever I try to apply a profile, why?  
-A: This app only works if you have a GPD Win 2 with a M3-7Y30 CPU. The newer models have a 8100Y CPU and are not compatible. I do not have a test device to make the necessary changes unfortunately.
+Q2: The app freezes whenever I try to apply a profile, why?  
+A: See Q3 and Q5. The XTU was probably not installed correctly. The app also won't work on anything besides a GPD Win 2.
 
-Q: Do I still need to download and install the Intel Extreme Tuning Utility?  
+Q3: Do I still need to download and install the Intel Extreme Tuning Utility?  
 A: Yes! This application "talks" with XTU in order to apply the settings. Download it here: https://downloadcenter.intel.com/download/24075/Intel-Extreme-Tuning-Utility-Intel-XTU-
 The app will also prompt you to download XTU if it's not installed yet.  
 
-Q: Does XTU need to be constantly running in the background while using this?  
+Q4: Does XTU need to be constantly running in the background while using this?  
 A: Nope, the application starts and stops the XTU service by itself. The XTU window doesn't even need to be opened as only the CLI (command line interface) is used.
 
-Q: I installed the latest version of Intel Extreme Tuning Utility, but the app still says XTU couldn't be found. What gives?  
+Q5: I installed the latest version of Intel Extreme Tuning Utility, but the app still says XTU couldn't be found. What gives?  
 A: Somewhere since April 2019, Intel decided not to include the CLI executable anymore with its setup. A workaround for this is to [download the older version included in the repo](https://github.com/BlackDragonBE/GPDWin2XTUManager/blob/master/XTU_Installer/XTU-Setup-6.4.1.25.exe), removing the current XTU you have installed and installing the one I have provided.
 
-Q: How can I update the application?  
+Q6: How can I update the application?  
 A: Simply download the [newest release](https://github.com/BlackDragonBE/GPDWin2XTUManager/releases), unpack it and replace the contents of the folder with that of the older version. When coming from 1.02 or older, make sure none of your profile names contain spaces before attempting to load them at logon.  
   
-Q: My antivirus detected a trojan in the zip file, should I be concerned?  
+Q7: My antivirus detected a trojan in the zip file, should I be concerned?  
 A: I assure you those are false positives. If you know some programming, you can look at the source code to verify it's all safe and you can even compile the application yourself as the repo includes every single file. [The EXE itself does come out 100% clean in virus total](https://www.virustotal.com/#/file/ba977731854d83cd75122f2419c6be94df46483ebbaa097727d8f212430e4125/detection).
   
-Q: Why is it so ugly?  
+Q8: Why is it so ugly?  
 A: Because I'm more of a programmer and a tinkerer than a designer. I've also made the UI extra chunky so it's easier to use with the touchscreen. If there are any designers out there that are familiar with WinForms and know how to make the application more attractive, feel free to reach out to me! 
 
-Q: I'd like to see [FEATURE HERE] implemented.  
+Q9: I'd like to see [FEATURE HERE] implemented.  
 A: First, that's not a question. Second, feel free to contact me on [Reddit](https://www.reddit.com/user/BlackDragonBE/) or [Twitter](https://twitter.com/BlackDragonBE) with any suggestions.
 
-Q: Can I share my list of profiles with others?  
+Q10: Can I share my list of profiles with others?  
 A: Sure, just share the **Settings.json** file in the application folder, that holds all the profiles. You can also edit it manually, but I wouldn't recommend it.
 
-Q: I've used your application and I got a BSOD! What the frick?!  
+Q11: I've used your application and I got a BSOD! What the frick?!  
 A: Be sure to set up and test any values, especially the undervolts. Every device is different and has different stable settings. Don't be afraid to experiment and ask advice on [Reddit](https://www.reddit.com/r/gpdwin/)!
 If you've set up an unstable profile to be applied at log on, [boot into safe mode](https://www.digitalcitizen.life/4-ways-boot-safe-mode-windows-10) and use the application to disable the automatic applying in the settings. Temporarily moving or renaming the executable by using WinPE or a linux live usb also works.
 
