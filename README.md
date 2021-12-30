@@ -1,4 +1,7 @@
-## NOTE: The active development on this application has stopped. It's impossible for me to keep up with the newest GPD hardware without being sponsored. You can fork this project and adjust it to your needs, but I won't be able to give any support. 
+## PLEASE READ FIRST
+
+The active development on this application has stopped. You can fork this project and adjust it to your needs, but I won't be able to give any support.  
+This is a project I did out of love for the community, so I don't make any profit. It's impossible for me to keep up with the newest GPD hardware without being sponsored. I have reached out to GPD in the winter of 2020 to ask for hardware, but they have ignored me. If you like this project, please reach out to GPD and ask them to reach out to me so I can continue my software development for their hardware. 
 
 # GPD Win 2 XTU Manager
 
